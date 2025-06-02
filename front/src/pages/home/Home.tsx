@@ -1,9 +1,9 @@
-import { Link } from "react-router";
+import { FilterBar } from "../../components/filters/FilterBar";
 
 function Home() {
     return (
         <>
-            Check the <Link to="/terms">Terms of Service</Link>
+            <FilterBar />
         </>
     )
 }
