@@ -1,30 +1,33 @@
+/**
+ * IMemeGenerationService
+ * 
+ * Interface for a service that generates memes using templates and AI prompts.
+ * Provides methods to retrieve meme templates, get a template by its ID, and generate memes from prompts.
+ */
+
 import Template from "../models/memegeneration/MemeTemplate"
 
 export interface IMemeGenerationService {
-  /**
-   * Get a list of all available meme templates.
-   * Example: https://api.memegen.link/templates/
-   */
-  getTemplates(): Promise<Template[]| null>;
+    /**
+     * Retrieves a list of all available meme templates.
+     * Example endpoint: https://api.memegen.link/templates/
+     * @returns A promise resolving to an array of meme templates or null if unavailable.
+     */
+    getTemplates(): Promise<Template[] | null>;
 
-  /**
-   * Get a template by its id
-   * Example: https://api.memegen.link/templates/buzz
-   */
-   getTemplateById(id: string): Promise<Template | null>
+    /**
+     * Retrieves a meme template by its ID.
+     * Example endpoint: https://api.memegen.link/templates/buzz
+     * @param id The unique identifier of the template.
+     * @returns A promise resolving to the template object or null if not found.
+     */
+    getTemplateById(id: string): Promise<Template | null>
 
-  /**
-   * Generate a meme URL using a specific template and text.
-   * @param templateId - ID of the meme template (e.g., "buzz", "drake").
-   * @param topText - Text to appear at the top of the meme.
-   * @param bottomText - Text to appear at the bottom of the meme.
-   * @returns URL of the generated meme image.
-   */
-  generateMemeUrl(templateId: string, topText: string, bottomText: string): string;
-
-  /**
-   * Optionally fetch the actual meme image (as a Blob or base64 string).
-   * @param memeUrl - URL of the generated meme image.
-   */
-  fetchMemeImage?(memeUrl: string): Promise<Blob | string>;
+    /**
+     * Generates a meme from a textual prompt.
+     * Uses AI to process the prompt and generate meme content.
+     * @param prompt The text prompt describing the meme to generate.
+     * @returns A promise resolving to the URL of the generated meme or a Blob object.
+     */
+    generateMemeFromPrompt(prompt: string): Promise<Blob | string>;
 }

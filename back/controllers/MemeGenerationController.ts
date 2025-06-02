@@ -1,15 +1,36 @@
 import { FastifyPluginCallback, FastifyReply, FastifyRequest } from "fastify";
 import MemeGenerationService from "../services/MemeGenerationService";
 import { IMemeGenerationService } from "../services/IMemeGenerationService";
+import { IAIService } from "../services/IAIService";
+import AlbertHandlerService from "../services/AlbertHandlerService";
 
 const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
     const schemaCommon = {
         tags: ["Meme Generation"],
     };
 
-    const memeService: IMemeGenerationService = new MemeGenerationService();
+    const iaService : IAIService = new AlbertHandlerService();
+    const memeService: IMemeGenerationService = new MemeGenerationService(iaService);
+
 
     // TODO: JWT Authentication.
+
+    fastify.post("/generateFromPrompt", async (request, reply) => {
+        const promptText = request.body;
+
+        if (typeof promptText !== "string" || promptText.trim() === "") {
+            return reply.code(400).send({ error: "Request body must be a non-empty string" });
+        }
+
+        try {
+            const url = await memeService.generateMemeFromPrompt(promptText);
+            return reply.send({ url });
+        } catch (error : any) {
+            request.log.error(error);
+            return reply.code(500).send({ error: "Failed to generate meme", detail: error.message });
+        }
+    });
+
     fastify.get("/templates/:id", {
         schema: {
             params: {
