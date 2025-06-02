@@ -32,6 +32,21 @@ export class RoomService {
         setInterval(this.onTimerTick.bind(this), 2000)
     }
 
+    async init() {
+        this.logger.info('RoomService initialized');
+        const roomFiles = await this.storageService.listRoomFiles();
+        for (const roomFile of roomFiles) {
+            // Load each room file and create a room instance
+            try {
+                await this.makeOrLoadRoom(roomFile);
+            } catch (error) {
+                this.logger.error(`Failed to load room with 'id': ${roomFile}`, error);
+            }
+        }
+        this.logger.info(`Found ${roomFiles.length} room files: ${roomFiles.join(", ")}`);
+    }
+
+
     onTimerTick() {
         for (const roomState of this.rooms.values()) {
             if (roomState.needsPersist) {
@@ -104,5 +119,16 @@ export class RoomService {
         const err = await this.mutex
         if (err) throw err
         return this.rooms.get(roomId)!.room
+    }
+
+    getRooms() {
+        return Array.from(this.rooms.values()).map((roomState, index) => ({
+            id: index,
+            title: '0' +(index +1) + " - Sample Idea Title Long Description",
+            updatedAt: new Date(new Date().getTime() - 1000 * 60 * 60 * (Math.random() * 48)), // Random hours ago
+            membersCount: index % 2 ? 3 : 5,
+            roomName: roomState.id,
+            category: index % 2 ? "My" : "Shared",
+        }));
     }
 }

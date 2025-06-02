@@ -2,20 +2,56 @@ import { Grid } from "@mui/material";
 import { NewIdeaCard } from "./NewIdeaCard";
 import { IdeaCard } from "./IdeaCard";
 
-import { PROJECTS } from "../../assets/projects";
+import type { Project } from "../../assets/projects";
+import { useEffect, useState } from "react";
 
-export const ProjectsList = () => {
+// Define the props interface
+interface ProjectsListProps {
+    selectedFilter: number; // 0 = All, 1 = My Ideas Boards, 2 = Shared with me
+}
+
+export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
+    const [rooms, setRooms] = useState<Project[]>([]);
+
+    const fetchProjects = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/rooms`, {
+                method: 'GET',
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch projects: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            setRooms(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProjects();
+    }, []);
+
+    // Apply filtering logic
+    const filteredRooms = rooms.filter((project) => {
+        if (selectedFilter === 1) return project.category === "My";
+        if (selectedFilter === 2) return project.category === "Shared";
+        return true; // 0 = All
+    });
+
     return (
         <Grid container columns={4} spacing={2}>
             <Grid size={1}>
                 <NewIdeaCard />
             </Grid>
 
-            {PROJECTS.map((project, index) => (
-                <Grid size={1}>
-                    <IdeaCard key={index} project={project} />
+            {filteredRooms.map((project) => (
+                <Grid size={1} key={project.roomName}>
+                    <IdeaCard project={project} />
                 </Grid>
             ))}
         </Grid>
     );
-}
+};

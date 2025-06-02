@@ -8,8 +8,8 @@
 
 import { RoomSnapshot } from "@tldraw/sync-core";
 import { IRoomStorageService } from "./IRoomStorageService";
-import { mkdir, readFile, writeFile } from 'fs/promises'
-import { join } from 'path'
+import { mkdir, readdir, readFile, writeFile } from 'fs/promises'
+import { extname, join } from 'path'
 import { Readable } from 'stream'
 
 
@@ -33,14 +33,30 @@ export class RoomStorageService implements IRoomStorageService {
     }
 
     /**
+     * Lists all JSON files in the room snapshots directory.
+     * @returns A promise resolving to an array of room IDs (without the `.json` extension).
+     */
+    async listRoomFiles(): Promise<string[]> {
+        try {
+            const files = await readdir(this.rootDir);
+            return files
+                .filter(file => extname(file) === '.json')
+                .map(file => file.replace(/\.json$/, '')); // Remove extension to get roomId
+        } catch (e) {
+            console.error('Error reading directory:', e);
+            return [];
+        }
+    }
+
+    /**
      * Loads a room snapshot from the filesystem.
      * @param roomId The unique identifier of the room.
      * @returns A promise resolving to the parsed room snapshot object, or undefined if not found or on error.
      */
-    async load(roomId: string): Promise<any> {
+    async load(roomId: string): Promise<RoomSnapshot | undefined> {
         try {
             const data = await readFile(join(this.rootDir, `${roomId}.json`))
-            return JSON.parse(data.toString()) ?? undefined
+            return JSON.parse(data.toString()) as RoomSnapshot ?? undefined
         } catch (e) {
             return undefined
         }
