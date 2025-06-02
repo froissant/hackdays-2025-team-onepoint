@@ -23,6 +23,13 @@ const { DsfrCustomBrandingProvider } = createDsfrCustomBrandingProvider({
 
     const theme = createTheme({
       palette: {
+        primary: {
+          main: '#000091', // Content-Brand-1-Accent
+        },
+        secondary: {
+          main: '#000000', // Content-Brand-1
+          light: '#595959', // Content-Brand-1-Disabled
+        },
         text: {
           primary: '#000091', // Content-Brand-1-Accent
           secondary: '#000000', // Content-Brand-1

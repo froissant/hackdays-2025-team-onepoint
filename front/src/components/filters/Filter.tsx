@@ -10,6 +10,9 @@ export const Filter = ({ title, selected, onFilterClick }: FilterProps) => {
     return (
         <Button
             variant={selected ? "contained" : "outlined"}
+            sx={{
+                textTransform: "none",
+            }}
             onClick={onFilterClick}
         >
             {title}
