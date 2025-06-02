@@ -1,7 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      TLDRAW_BUCKET: string;
+      PORT: number;
     }
   }
 }
