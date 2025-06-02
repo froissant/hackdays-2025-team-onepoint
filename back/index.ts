@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 // To keep things simple we're skipping normal production concerns like rate limiting and input validation.
 const app = fastify()
 app.register(websocketPlugin)
-app.register(cors, { origin: '*' })
+app.register(cors, { origin: '*', methods: ["POST", "GET", "PUT", "PATCH"] })
 
 app.register(MemeGenerationController, { prefix: '/memes' });
 app.register(TLDrawSyncController, { prefix: '/sync' })

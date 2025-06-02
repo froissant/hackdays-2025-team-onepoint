@@ -3,7 +3,7 @@ declare global {
     interface ProcessEnv {
       PORT: number;
       ASSET_DIR: string;
-      _DIR: string;
+      ROOM_DIR: string;
     }
   }
 }

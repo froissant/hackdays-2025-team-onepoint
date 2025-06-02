@@ -26,7 +26,7 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 
 		const collectMessagesListener = (message: RawData) => {
 			caughtMessages.push(message)
-		}
+		} 
 
 		socket.on('message', collectMessagesListener)
 
@@ -53,6 +53,7 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 	})
 	app.get('/uploads/:id', async (req, res) => {
 		const id = (req.params as any).id as string
+		console.log(id);
 		const data = await loadAsset(id)
 		res.send(data)
 	})
