@@ -20,11 +20,16 @@
 	--space-9: 64px;
 	--space-10: 72px;
 	/* Radius */
-	--radius-0: 2px;
+	/* --radius-0: 2px;
 	--radius-1: 4px;
 	--radius-2: 6px;
 	--radius-3: 9px;
-	--radius-4: 11px;
+	--radius-4: 11px; */
+	--radius-0: 2px;
+	--radius-1: 4px;
+	--radius-2: 5px;
+	--radius-3: 6px;
+	--radius-4: 7px;
 
 	/* Canvas z-index */
 	--layer-canvas-hidden: -999999;
@@ -163,12 +168,12 @@
 	--color-panel: hsl(0, 0%, 99%);
 	--color-panel-transparent: hsla(0, 0%, 99%, 0%);
 	--color-focus: hsl(219, 65%, 50%);
-	--color-selected: hsl(214, 84%, 56%);
+	--color-selected: #000091;
 	--color-selected-contrast: hsl(0, 0%, 100%);
 	--color-selection-fill: hsl(210, 100%, 56%, 24%);
 	--color-selection-stroke: hsl(214, 84%, 56%);
 	--color-text-0: hsl(0, 0%, 11%);
-	--color-text-1: hsl(0, 0%, 18%);
+	--color-text-1: #000091;
 	--color-text-3: hsl(220, 2%, 65%);
 	--color-text-shadow: hsl(0, 0%, 100%);
 	--color-text-highlight: hsl(52, 100%, 50%);
@@ -183,12 +188,8 @@
 	--color-laser: hsl(0, 100%, 50%);
 	/* Shadows */
 	--shadow-1: 0px 1px 2px hsl(0, 0%, 0%, 25%), 0px 1px 3px hsl(0, 0%, 0%, 9%);
-	--shadow-2:
-		0px 0px 2px hsl(0, 0%, 0%, 16%), 0px 2px 3px hsl(0, 0%, 0%, 24%),
-		0px 2px 6px hsl(0, 0%, 0%, 0.1), inset 0px 0px 0px 1px var(--color-panel-contrast);
-	--shadow-3:
-		0px 1px 2px hsl(0, 0%, 0%, 28%), 0px 2px 6px hsl(0, 0%, 0%, 14%),
-		inset 0px 0px 0px 1px var(--color-panel-contrast);
+	--shadow-2: 0 0 0 1px #E2E2E2;
+	--shadow-3: 0 0 0 1px #E2E2E2;
 	--shadow-4:
 		0px 0px 3px hsl(0, 0%, 0%, 19%), 0px 5px 4px hsl(0, 0%, 0%, 16%),
 		0px 2px 16px hsl(0, 0%, 0%, 6%), inset 0px 0px 0px 1px var(--color-panel-contrast);
