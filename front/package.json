@@ -4,17 +4,28 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "react-dsfr update-icons",
+    "prebuild": "react-dsfr update-icons",
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codegouvfr/react-dsfr": "^1.25.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@gouvfr-lasuite/integration": "^1.0.3",
+    "@gouvfr/dsfr": "^1.13.2",
+    "@mui/material": "^7.1.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router": "^7.6.1",
+    "react-router-dom": "^7.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^22.15.29",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
@@ -22,6 +33,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
   }
 }
