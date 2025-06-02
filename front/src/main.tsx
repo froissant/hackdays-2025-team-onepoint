@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
 
 import { createDsfrCustomBrandingProvider, createMuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui";
-import { createTheme, GlobalStyles } from '@mui/material';
+import { Container, createTheme, GlobalStyles } from '@mui/material';
 import { startReactDsfr } from "@codegouvfr/react-dsfr/spa";
 startReactDsfr({ defaultColorScheme: "light", Link });
 
@@ -50,21 +50,26 @@ createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <GlobalStyles
             styles={{
-              "html": {
-                "scrollBehavior": "smooth"
+              html: {
+                scrollBehavior: "smooth"
               },
               ".lasuite-gaufre-btn": {
-                "box-shadow": "0px 0px 0px 0px inset !important"
-              }
+                boxShadow: "0px 0px 0px 0px inset !important"
+              },
             }}
           />
-          <div style={{ "minHeight": "100vh", "display": "flex", "flexDirection": "column" }}>
+          <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
             <Header />
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/draw" element={<Draw />} />
-            </Routes>
+            <Container
+              sx={{
+                marginY: "18px",
+              }}>
+              <Routes>
+                <Route index element={<Home />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/draw" element={<Draw />} />
+              </Routes>
+            </Container>
           </div>
         </BrowserRouter>
       </DsfrCustomBrandingProvider>

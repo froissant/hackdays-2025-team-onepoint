@@ -8,10 +8,11 @@ export const Header = () => {
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
-                alignItems: 'stretch',
+                alignItems: 'center',
                 justifyContent: 'space-between',
                 paddingX: "18px",
                 paddingY: "10px",
+                borderBottom: '1px solid #E2E2E2',
             }}>
             <Link to="/" style={{ textDecoration: 'none', background: 'none' }}>
                 <Box
@@ -57,7 +58,7 @@ export const Header = () => {
                 </Box>
             </Link>
 
-            <Gaufre />
+            <Gaufre variant="small" />
         </Box >
     );
 };
