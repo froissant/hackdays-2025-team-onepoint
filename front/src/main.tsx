@@ -13,6 +13,7 @@ import Home from './pages/home/Home';
 import Terms from './pages/terms/Terms';
 
 import { Header } from './components/header/Header';
+import { Draw } from './pages/draw/Draw';
 
 const { MuiDsfrThemeProvider } = createMuiDsfrThemeProvider({
 });
@@ -62,6 +63,7 @@ createRoot(document.getElementById('root')!).render(
             <Routes>
               <Route index element={<Home />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/draw" element={<Draw />} />
             </Routes>
           </div>
         </BrowserRouter>
