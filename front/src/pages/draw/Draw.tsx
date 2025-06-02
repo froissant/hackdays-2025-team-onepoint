@@ -8,12 +8,17 @@ import {
 	uniqueId,
 } from 'tldraw'
 
-import 'tldraw/tldraw.css'
+import '../../draw-tools/tldraw.css'
+
+import { MemeTool } from '../../draw-tools/MemeTool'
+
+import { components, customAssetUrls, uiOverrides } from '../../draw-tools/ui-overrides'
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
-console.log(WORKER_URL)
 
 const roomId = 'test-room'
+
+const customTools = [MemeTool];
 
 export const Draw = () => {
 	const store = useSync({
@@ -35,6 +40,15 @@ export const Draw = () => {
 					// when the editor is ready, we need to register out bookmark unfurling service
 					editor.registerExternalAssetHandler('url', unfurlBookmarkUrl)
 				}}
+
+				// Pass in the array of custom tool classes
+				tools={customTools}
+				// Pass in any overrides to the user interface
+				overrides={uiOverrides}
+				// Pass in the new Keybaord Shortcuts component
+				components={components}
+				// Used for icons
+				assetUrls={customAssetUrls}
 			/>
 		</div>
 	)
@@ -62,8 +76,14 @@ const multiplayerAssets: TLAssetStore = {
 	},
 	// to retrieve an asset, we can just use the same URL. you could customize this to add extra
 	// auth, or to serve optimized versions / sizes of the asset.
+	// JMI : Hack
 	resolve(asset) {
-		return asset.props.src
+		if (asset.props.src) {
+			let url = URL.parse(asset.props.src)!
+			url.hostname = import.meta.env.VITE_BACKEND_URL;
+			return url.toString();
+		}
+		return null
 	},
 }
 
