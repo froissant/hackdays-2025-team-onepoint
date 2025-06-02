@@ -66,10 +66,7 @@ const multiplayerAssets: TLAssetStore = {
 
 		const response = await fetch(url, {
 			method: 'PUT',
-			body: file,
-			headers: {
-				"ngrok-skip-browser-warning": "true"
-			}
+			body: file
 		})
 
 		if (!response.ok) {
