@@ -60,6 +60,9 @@ createRoot(document.getElementById('root')!).render(
               html: {
                 scrollBehavior: "smooth"
               },
+              body: {
+                backgroundColor: "#f8f8f8"
+              },
               ".lasuite-gaufre-btn": {
                 boxShadow: "0px 0px 0px 0px inset !important"
               },

@@ -11,8 +11,9 @@ export const Header = () => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 paddingX: "18px",
-                paddingY: "10px",
+                paddingY: "12px",
                 borderBottom: '1px solid #E2E2E2',
+                backgroundColor: 'white',
             }}>
             <Link to="/" style={{ textDecoration: 'none', background: 'none' }}>
                 <Box
@@ -58,7 +59,7 @@ export const Header = () => {
                 </Box>
             </Link>
 
-            <Gaufre variant="small" />
+            <Gaufre />
         </Box >
     );
 };
