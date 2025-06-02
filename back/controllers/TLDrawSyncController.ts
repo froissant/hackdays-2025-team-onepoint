@@ -11,7 +11,7 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 
 	const storageService = new RoomStorageService();
 	const roomService = new RoomService(app.log, storageService);
-
+	roomService.init();
 	// This is the main entrypoint for the multiplayer sync
 	app.get('/connect/:roomId', { websocket: true }, async (socket, req) => {
 		// The roomId comes from the URL pathname
@@ -66,6 +66,12 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 		const url = (req.query as any).url as string
 		res.send(await unfurl(url))
 	})
+
+	app.get('/rooms', async (request: FastifyRequest, reply: FastifyReply) => {
+		// Create a new room
+		const rooms = roomService.getRooms();
+		reply.send(rooms);
+	});
 
 	app.post('/rooms', async (request: FastifyRequest<{ Body: { id: string } }>, reply: FastifyReply) => {
 		const { id } = request.body;

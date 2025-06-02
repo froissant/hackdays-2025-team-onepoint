@@ -1,11 +1,15 @@
 import { Box } from "@mui/material";
 import { Filter } from "./Filter";
-import { useState } from "react";
 
-export const FilterBar = () => {
+
+export interface FilterBarProps {
+    selectedFilter: number;
+    setSelectedFilter: (filter: number) => void;
+}
+
+
+export const FilterBar = ({ selectedFilter, setSelectedFilter }: FilterBarProps) => {
     const filters = ["All Ideas Boards", "My Ideas Boards", "Shared with me"];
-
-    const [selectedFilter, setSelectedFilter] = useState(0);
 
     return (
         <Box
