@@ -1,9 +1,7 @@
 declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      PORT: number;
-      ASSET_DIR: string;
-      _DIR: string;
+  interface ImportMeta {
+    env: {
+      VITE_BACKEND_URL: string;
     }
   }
 }

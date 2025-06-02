@@ -10,7 +10,8 @@ import {
 
 import 'tldraw/tldraw.css'
 
-const WORKER_URL = `http://localhost:8080/sync`
+const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
+console.log(WORKER_URL)
 
 const roomId = 'test-room'
 
