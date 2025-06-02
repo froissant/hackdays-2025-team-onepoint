@@ -7,6 +7,7 @@ import { makeOrLoadRoom } from './rooms'
 import { unfurl } from './unfurl'
 
 import 'dotenv/config'
+import MemeGenerationController from './controllers/MemeGenerationController'
 
 const PORT = process.env.PORT;
 
@@ -16,6 +17,7 @@ const app = fastify()
 app.register(websocketPlugin)
 app.register(cors, { origin: '*' })
 
+app.register(MemeGenerationController, { prefix: '/memes' });
 app.register(async (app) => {
 	// This is the main entrypoint for the multiplayer sync
 	app.get('/connect/:roomId', { websocket: true }, async (socket, req) => {
