@@ -58,6 +58,7 @@ export const Draw = () => {
 const multiplayerAssets: TLAssetStore = {
 	// to upload an asset, we prefix it with a unique id, POST it to our worker, and return the URL
 	async upload(_asset, file) {
+		console.log(file);
 		const id = uniqueId()
 
 		const objectName = `${id}-${file.name}`
@@ -66,6 +67,9 @@ const multiplayerAssets: TLAssetStore = {
 		const response = await fetch(url, {
 			method: 'PUT',
 			body: file,
+			headers: {
+				"ngrok-skip-browser-warning": "true"
+			}
 		})
 
 		if (!response.ok) {
@@ -79,8 +83,11 @@ const multiplayerAssets: TLAssetStore = {
 	// JMI : Hack
 	resolve(asset) {
 		if (asset.props.src) {
-			let url = URL.parse(asset.props.src)!
-			url.hostname = import.meta.env.VITE_BACKEND_URL;
+			let targetHost = URL.parse(WORKER_URL)!;
+			let url = URL.parse(asset.props.src)!;
+			url.hostname = targetHost.hostname;
+			url.protocol = targetHost.protocol;
+			url.port = targetHost.port;
 			return url.toString();
 		}
 		return null
