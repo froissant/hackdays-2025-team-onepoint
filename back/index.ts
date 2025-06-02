@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 
 // For this example we use a simple fastify server with the official websocket plugin
 // To keep things simple we're skipping normal production concerns like rate limiting and input validation.
-const app = fastify()
+const app = fastify({ logger: true })
 app.register(websocketPlugin)
 app.register(cors, { origin: '*', methods: ["POST", "GET", "PUT", "PATCH"] })
 
@@ -26,6 +26,4 @@ app.listen({ port: PORT }, (err, address) => {
 		console.error(err)
 		process.exit(1)
 	}
-
-	console.log(`Server started on ${address}`)
 })

@@ -22,6 +22,7 @@ export const NewIdeaCard = () => {
                 }}>
                 <Link
                     to="/draw"
+                    state={{ roomName: "test-room" }}
                     style={{
                         textDecoration: 'none',
                         background: 'none'

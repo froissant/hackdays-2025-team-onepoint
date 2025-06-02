@@ -1,13 +1,16 @@
 import { FastifyPluginCallback, FastifyReply, FastifyRequest } from "fastify";
 import { RawData } from "ws";
-import { makeOrLoadRoom } from "./TLDrawSyncUtils/rooms";
-import { loadAsset, storeAsset } from "./TLDrawSyncUtils/assets";
 import { unfurl } from "unfurl.js";
+import { RoomStorageService } from "../services/RoomStorageService";
+import { RoomService } from "../services/RoomService";
 
 const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
-    const schemaCommon = {
-        tags: ["TLDraw Sync"],
-    };
+	const schemaCommon = {
+		tags: ["TLDraw Sync"],
+	};
+
+	const storageService = new RoomStorageService();
+	const roomService = new RoomService(app.log, storageService);
 
 	// This is the main entrypoint for the multiplayer sync
 	app.get('/connect/:roomId', { websocket: true }, async (socket, req) => {
@@ -26,12 +29,12 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 
 		const collectMessagesListener = (message: RawData) => {
 			caughtMessages.push(message)
-		} 
+		}
 
 		socket.on('message', collectMessagesListener)
 
 		// Here we make or get an existing instance of TLSocketRoom for the given roomId
-		const room = await makeOrLoadRoom(roomId)
+		const room = await roomService.makeOrLoadRoom(roomId)
 		// and finally connect the socket to the room
 		room.handleSocketConnect({ sessionId, socket })
 
@@ -48,12 +51,13 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 	app.addContentTypeParser('*', (_, __, done) => done(null))
 	app.put('/uploads/:id', {}, async (req, res) => {
 		const id = (req.params as any).id as string
-		await storeAsset(id, req.raw)
+		await storageService.saveAsset(id, req.raw)
 		res.send({ ok: true })
 	})
+
 	app.get('/uploads/:id', async (req, res) => {
 		const id = (req.params as any).id as string
-		const data = await loadAsset(id)
+		const data = await storageService.loadAsset(id)
 		res.send(data)
 	})
 
@@ -63,7 +67,28 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 		res.send(await unfurl(url))
 	})
 
-    done();
+	app.post('/rooms', async (request: FastifyRequest<{ Body: { id: string } }>, reply: FastifyReply) => {
+		const { id } = request.body;
+		// Create a new room
+		const room = await roomService.createRoom(id);
+		reply.send(room);
+	});
+
+	app.get('/rooms/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+		const { id } = request.params;
+		// Get room details
+		const room = roomService.loadRoom(id);
+		reply.send(room);
+	});
+
+	app.delete('/rooms/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+		const { id } = request.params;
+		// Delete the room
+		roomService.deleteRoom(id);
+		reply.status(204).send();
+	});
+
+	done();
 };
 
 export default TLDrawSyncController;

@@ -1,4 +1,4 @@
-export default interface MemePromptResponse {
+export interface MemePromptResponse {
     id: string;
     lines: string[];
-}
+};

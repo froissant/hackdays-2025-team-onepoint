@@ -4,7 +4,7 @@
  * Represents a meme template available for meme generation.
  * Contains information about the template's ID, name, a blank image URL, and an example meme.
  */
-export default interface MemeTemplate {
+export interface MemeTemplate {
     
     /**
      * Unique identifier for the meme template.

@@ -5,8 +5,8 @@
  */
 
 import { MemeGenRequest } from "../models/memegeneration/MemeGenRequest";
-import MemePromptResponse from "../models/memegeneration/MemePromptResponse";
-import MemeTemplate from "../models/memegeneration/MemeTemplate";
+import { MemePromptResponse } from "../models/memegeneration/MemePromptResponse";
+import { MemeTemplate } from "../models/memegeneration/MemeTemplate";
 import { IAIService } from "./IAIService";
 import { IMemeGenerationService } from "./IMemeGenerationService";
 

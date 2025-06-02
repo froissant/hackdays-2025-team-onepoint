@@ -13,17 +13,19 @@ import '../../draw-tools/tldraw.css'
 import { MemeTool } from '../../draw-tools/MemeTool'
 
 import { components, customAssetUrls, uiOverrides } from '../../draw-tools/ui-overrides'
+import { useLocation } from 'react-router'
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
 
-const roomId = 'test-room'
 
 const customTools = [MemeTool];
 
 export const Draw = () => {
+	const location = useLocation();
+	const roomName = location.state?.roomName;
 	const store = useSync({
 		// We need to know the websocket's URI...
-		uri: `${WORKER_URL}/connect/${roomId}`,
+		uri: `${WORKER_URL}/connect/${roomName}`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssets,
 	})

@@ -5,7 +5,7 @@
  * Provides methods to retrieve meme templates, get a template by its ID, and generate memes from prompts.
  */
 
-import Template from "../models/memegeneration/MemeTemplate"
+import { MemeTemplate } from "../models/memegeneration/MemeTemplate"
 
 export interface IMemeGenerationService {
     /**
@@ -13,7 +13,7 @@ export interface IMemeGenerationService {
      * Example endpoint: https://api.memegen.link/templates/
      * @returns A promise resolving to an array of meme templates or null if unavailable.
      */
-    getTemplates(): Promise<Template[] | null>;
+    getTemplates(): Promise<MemeTemplate[] | null>;
 
     /**
      * Retrieves a meme template by its ID.
@@ -21,7 +21,7 @@ export interface IMemeGenerationService {
      * @param id The unique identifier of the template.
      * @returns A promise resolving to the template object or null if not found.
      */
-    getTemplateById(id: string): Promise<Template | null>
+    getTemplateById(id: string): Promise<MemeTemplate | null>
 
     /**
      * Generates a meme from a textual prompt.

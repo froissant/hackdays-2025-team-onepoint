@@ -1,4 +1,4 @@
-import MemePromptResponse from "../models/memegeneration/MemePromptResponse";
+import { MemePromptResponse } from "../models/memegeneration/MemePromptResponse";
 
 /**
  * IAIService
@@ -15,5 +15,5 @@ export interface IAIService {
      * @param prompt The text prompt describing the meme to generate.
      * @returns A promise resolving to a MemePromptResponse object.
      */
-    processMemePrompt(prompt: string) : Promise<MemePromptResponse>;
+    processMemePrompt(prompt: string): Promise<MemePromptResponse>;
 }

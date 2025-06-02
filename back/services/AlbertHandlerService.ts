@@ -7,7 +7,7 @@
  * which includes the selected template ID and the text lines for meme generation.
  */
 
-import MemePromptResponse from "../models/memegeneration/MemePromptResponse";
+import { MemePromptResponse } from "../models/memegeneration/MemePromptResponse";
 import { IAIService } from "./IAIService";
 
 export default class AlbertHandlerService implements IAIService {

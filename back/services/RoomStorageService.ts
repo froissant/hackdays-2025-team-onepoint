@@ -1,0 +1,81 @@
+/**
+ * RoomStorageService
+ * 
+ * Implementation of the IRoomStorageService interface.
+ * This service provides methods to persist and retrieve room snapshots to and from the filesystem.
+ * Room data is stored as JSON files in a directory specified by the ROOM_DIR environment variable.
+ */
+
+import { RoomSnapshot } from "@tldraw/sync-core";
+import { IRoomStorageService } from "./IRoomStorageService";
+import { mkdir, readFile, writeFile } from 'fs/promises'
+import { join } from 'path'
+import { Readable } from 'stream'
+
+
+export class RoomStorageService implements IRoomStorageService {
+    /**
+     * The root directory where room data is stored.
+     */
+    private rootDir: string;
+    /**
+     * The root asset directory where room assets are stored.
+     */
+    private rootAssetDir: string;
+
+    /**
+     * Initializes the RoomStorageService.
+     * The root directory is set from the ROOM_DIR environment variable.
+     */
+    constructor() {
+        this.rootDir = process.env.ROOM_DIR;
+        this.rootAssetDir = process.env.ASSET_DIR;
+    }
+
+    /**
+     * Loads a room snapshot from the filesystem.
+     * @param roomId The unique identifier of the room.
+     * @returns A promise resolving to the parsed room snapshot object, or undefined if not found or on error.
+     */
+    async load(roomId: string): Promise<any> {
+        try {
+            const data = await readFile(join(this.rootDir, `${roomId}.json`))
+            return JSON.parse(data.toString()) ?? undefined
+        } catch (e) {
+            return undefined
+        }
+    }
+
+    /**
+     * Saves a room snapshot to the filesystem.
+     * Ensures the root directory exists before writing.
+     * @param roomId The unique identifier of the room.
+     * @param snapshot The RoomSnapshot object to save.
+     * @returns A promise that resolves when the operation is complete.
+     */
+    async save(roomId: string, snapshot: RoomSnapshot): Promise<void> {
+        await mkdir(this.rootDir, { recursive: true })
+        await writeFile(join(this.rootDir, `${roomId}.json`), JSON.stringify(snapshot))
+    }
+
+    /**
+     * Saves an asset to the filesystem.
+     * Ensures the root asset directory exists before writing.
+     * @param id The unique identifier of the asset.
+     * @param stream The Readable stream containing the asset data.
+     * @returns A promise that resolves when the operation is complete.
+     */
+    async saveAsset(id: string, stream: Readable) {
+        await mkdir(this.rootAssetDir, { recursive: true })
+        await writeFile(join(this.rootAssetDir, id), stream)
+    }
+
+    /**
+     * Loads an asset from the filesystem.
+     * @param id The unique identifier of the asset to load.
+     * @returns 
+     */
+    async loadAsset(id: string) : Promise<Buffer> {
+        return await readFile(join(this.rootAssetDir, id))
+    }
+};

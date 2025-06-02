@@ -4,8 +4,10 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { formatDistanceToNowStrict } from "date-fns";
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { Link } from "react-router";
 
 type Project = {
+    roomName: string;
     id: number;
     title: string;
     updatedAt: Date;
@@ -22,9 +24,16 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
     }
 
     return (
-        <Card sx={{
-            cursor: 'pointer',
-        }}>
+        
+        <Card component={Link}
+            to="/draw"
+            state={{ roomName: project.roomName }}
+            sx={{
+                cursor: 'pointer',
+                textDecoration: 'none', // Prevent underline
+                color: 'inherit'         // Keep text color
+            }}>
+                          
             <CardMedia
                 component="img"
                 height="150"
