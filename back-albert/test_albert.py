@@ -35,7 +35,7 @@ tools = [
                 "properties": {
                     "meme_template_id": {
                         "type": "string",
-                        "description": "Name of the meme template"
+                        "description": "Id of the meme template"
                     },
                     "upper_text":{
                         "type": "string",
@@ -64,9 +64,10 @@ def getParamsFromPrompt(prompt: str):
         messages=[
             {"role": "system", "content": "You are memeGenAi, you will be prompted to generate memes and you are required to extract the id of the meme template, the upper text and the lower text."
             "the id of the template must absolutely exist in the json array below that contains the id, name, sentiment and useCase of many meme templates. It is your task to know which template the user is refering to, by comparing the description to the names and ids, and return the corresponding id."
-            "If the user does not refer to a specific template but rather describes a feeling or sentiment, you can refer to the fields sentiments and useCase to make a convenient choice and return the id."
             "For example, if the user says 'I want a meme of the crazy alien dude' it is your task to know they're refering to the ancient aliens guy, so you return 'aag' as the id of the meme template."
-            "Here is the Json of all the memes:\n\n" + templates},
+            "If the user does not refer to a specific template or upper text or lower text but rather describes a feeling or sentiment or situation, you can refer to the fields sentiments and useCase to make a convenient choice and return the id, upper text or lower text."
+            "The upper and lower text can be empty if requested by the user."
+            "Here is the JSON of all the meme templatess:\n\n" + templates},
             {"role": "user", "content": prompt}
         ],
         tools=tools,
