@@ -52,7 +52,7 @@ const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
 
             return reply.status(200).send(template);
         } catch (err) {
-            console.error(err);
+            fastify.log.error(err);
             return reply.status(500).send({ error: "Failed to fetch meme template" });
         }
     });
@@ -98,7 +98,7 @@ const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
 
             return reply.status(200).send(templates);
         } catch (err) {
-            console.error(err);
+            fastify.log.error(err);
             return reply.status(500).send({ error: "Failed to fetch meme templates" });
         }
     });
