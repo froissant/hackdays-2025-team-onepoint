@@ -6,26 +6,26 @@ import { Link } from "react-router-dom";
 
 export const NewIdeaCard = () => {
     return (
-        <Card sx={{
-            height: "200px",
-            backgroundColor: "primary.main",
-            cursor: "pointer",
-        }}>
-            <CardContent
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "100%",
-                    color: "white",
-                }}>
-                <Link
-                    to="/draw"
-                    state={{ roomName: "test-room" }}
-                    style={{
-                        textDecoration: 'none',
-                        background: 'none'
+        <Link
+            to="/draw"
+            state={{ roomName: "test-room" }}
+            style={{
+                textDecoration: 'none',
+                background: 'none'
+            }}>
+            <Card sx={{
+                height: "200px",
+                backgroundColor: "primary.main",
+                cursor: "pointer",
+            }}>
+                <CardContent
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        color: "white",
                     }}>
                     <Box
                         sx={{
@@ -44,9 +44,8 @@ export const NewIdeaCard = () => {
                             New Ideas Board
                         </Typography>
                     </Box>
-                </Link>
-
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
+        </Link>
     );
 }
