@@ -58,12 +58,19 @@ export const NewIdeaCard = () => {
                 width: "100%"
             }} >
 
-            <Card sx={{
+            <Card sx={[{
                 height: "200px",
                 width: "100%",
                 backgroundColor: "primary.main",
                 cursor: "pointer",
-            }}>
+            },
+            {
+                '&:hover': {
+                    backgroundColor: "primary.dark",
+                    transform: 'scale(1.02)',
+                    transition: 'transform 0.2s ease-in-out',
+                }
+            }]}>
                 <CardContent
                     sx={{
                         display: "flex",

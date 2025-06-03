@@ -22,11 +22,18 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
         <Link
             to="/draw"
             state={{ roomName: project.roomId }}>
-            <Card sx={{
+            <Card sx={[{
                 cursor: 'pointer',
                 textDecoration: 'none', // Prevent underline
                 color: 'inherit'         // Keep text color
-            }}>
+            },
+            {
+                '&:hover': {
+                    boxShadow: '0 0 0px 2px #1212ff',
+                    transform: 'scale(1.02)',
+                    transition: 'transform 0.2s ease-in-out',
+                }
+            }]}>
 
                 <CardMedia
                     component="img"
