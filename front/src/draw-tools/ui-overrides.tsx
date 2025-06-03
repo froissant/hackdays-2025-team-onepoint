@@ -28,7 +28,6 @@ import {
 	StarToolbarItem,
 	type TLComponents,
 	type TLUiAssetUrlOverrides,
-	type TLUiEventSource,
 	type TLUiOverrides,
 	TextToolbarItem,
 	TldrawUiMenuItem,
@@ -46,14 +45,14 @@ import { MemeTool } from './MemeTool'
 // There's a guide at the bottom of this file!
 
 export const uiOverrides: TLUiOverrides = {
-	tools(editor, tools) {
+	tools(_editor, tools) {
 		// Create a tool item in the ui's context.
 		tools.meme = {
 			id: 'meme-tool',
 			icon: 'color',
 			label: 'Meme',
 			kbd: 'm',
-			onSelect: () => {},
+			onSelect: () => { },
 		}
 		return tools
 	},
@@ -75,14 +74,14 @@ export const components: TLComponents = {
 			setDialogOpen(false);
 			if (message) {
 				tools.meme.onSelect("dialog");
-				editor.setCurrentTool('meme-tool', {message: message})
+				editor.setCurrentTool('meme-tool', { message: message })
 			}
 		}
 		return (
 			<DefaultToolbar {...props}>
 				<SelectToolbarItem />
 				<HandToolbarItem />
-				<div style={{ width: "1px", height:"24px", backgroundColor: "#D9D9D9" }}></div>
+				<div style={{ width: "1px", height: "24px", backgroundColor: "#D9D9D9" }}></div>
 				<DrawToolbarItem />
 				<EraserToolbarItem />
 				<ArrowToolbarItem />
@@ -114,7 +113,7 @@ export const components: TLComponents = {
 				<LaserToolbarItem />
 				<FrameToolbarItem />
 				<TldrawUiMenuItem {...tools['meme']} isSelected={isMemeSelected} onSelect={handleMemeDialog} />
-				<MemeToolDialog open={dialogOpen} onClose={handleMemeMessage}/>
+				<MemeToolDialog open={dialogOpen} onClose={handleMemeMessage} />
 			</DefaultToolbar>
 		)
 	},

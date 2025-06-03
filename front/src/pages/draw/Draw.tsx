@@ -32,7 +32,7 @@ export const Draw = () => {
 				// loading states & enable multiplayer UX like cursors & a presence menu
 				store={store}
 				onMount={(editor) => {
-					// @ts-expect-error
+					// @ts-expect-error required by Tldraw
 					window.editor = editor
 					// when the editor is ready, we need to register out bookmark unfurling service
 					editor.registerExternalAssetHandler('url', unfurlBookmarkUrl)
@@ -77,8 +77,8 @@ const multiplayerAssets: TLAssetStore = {
 	// JMI : Hack
 	resolve(asset) {
 		if (asset.props.src) {
-			let targetHost = URL.parse(WORKER_URL)!;
-			let url = URL.parse(asset.props.src)!;
+			const targetHost = URL.parse(WORKER_URL)!;
+			const url = URL.parse(asset.props.src)!;
 			url.hostname = targetHost.hostname;
 			url.protocol = targetHost.protocol;
 			url.port = targetHost.port;

@@ -1,15 +1,14 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
-import { useId, useState } from "react";
+import { useState } from "react";
 
 export function MemeToolDialog({ onClose, open }: { onClose(result?: string): void, open: boolean }) {
-	const messageId = useId();
-	const [message, setMessage] = useState(""); 
+	const [message, setMessage] = useState("");
 
 	return (
 		<>
 			<Dialog onClose={() => onClose()} open={open}>
 				<DialogTitle>Set backup account</DialogTitle>
-		        <DialogContent>
+				<DialogContent>
 					<TextField
 						autoFocus
 						required

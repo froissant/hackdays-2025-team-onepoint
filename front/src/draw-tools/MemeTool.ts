@@ -1,37 +1,37 @@
-import { AssetRecordType, StateNode, toRichText, type TLImageAsset, type TLTextShape } from "tldraw";
+import { AssetRecordType, StateNode, type TLImageAsset } from "tldraw";
 
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/memes/generateFromPrompt`;
 
 
 const getImageMeta = (url: string): Promise<HTMLImageElement> =>
-  new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = (err) => reject(err);
-    img.src = url;
-  });
+    new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = (err) => reject(err);
+        img.src = url;
+    });
 
 export class MemeTool extends StateNode {
-	static override id = 'meme-tool'
+    static override id = 'meme-tool'
 
-	override async onEnter({message}: {message: string}) {
-		const response = await fetch(WORKER_URL, {
-			method: 'POST',
-			body: message
-		});
+    override async onEnter({ message }: { message: string }) {
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            body: message
+        });
 
         if (response.ok) {
             const assetId = AssetRecordType.createId()
 
             //Getting image metadata by using a HTMLImageElement
-            var url = await response.text();
-            var imageMetadata = await getImageMeta(url);
-            var imageHeight = imageMetadata.height;
-            var imageWidth = imageMetadata.width;
+            const url = await response.text();
+            const imageMetadata = await getImageMeta(url);
+            let imageHeight = imageMetadata.height;
+            let imageWidth = imageMetadata.width;
 
             //Calculate ratio to apply based on relatively largest side
-            var ratio: number;
+            let ratio: number;
             if (imageHeight / window.innerHeight > imageWidth / window.innerWidth) {
                 ratio = window.innerHeight / (2 * imageHeight);
             } else {
@@ -42,12 +42,12 @@ export class MemeTool extends StateNode {
 
             //Create image asset
             //Doesn't upload the asset.
-            var image: TLImageAsset = {
+            const image: TLImageAsset = {
                 id: assetId,
                 type: "image",
                 typeName: 'asset',
                 props: {
-                    h: imageHeight, 
+                    h: imageHeight,
                     isAnimated: false,
                     mimeType: "image/png", // TBC mime type
                     name: "myImage.png",
@@ -56,7 +56,7 @@ export class MemeTool extends StateNode {
                 },
                 meta: {}
             };
-            
+
             this.editor.createAssets([image])
 
             //Display the asset
@@ -74,5 +74,5 @@ export class MemeTool extends StateNode {
         } else {
             alert(`Error while calling Meme : ${response.status}, ${await response.text()})`);
         }
-	}
+    }
 }
