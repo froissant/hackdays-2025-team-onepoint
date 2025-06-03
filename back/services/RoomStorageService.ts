@@ -50,6 +50,12 @@ export class RoomStorageService implements IRoomStorageService {
      */
     async listRoomFiles(): Promise<string[]> {
         try {
+            if (!this.rootDir) {
+                throw new Error('ROOM_DIR environment variable is not set');
+            }
+            // Ensure the directory exists
+            await mkdir(this.rootDir, { recursive: true });
+            // Read the directory and filter for JSON files
             const files = await readdir(this.rootDir);
             return files
                 .filter(file => extname(file) === '.json')
@@ -103,7 +109,7 @@ export class RoomStorageService implements IRoomStorageService {
      * @param id The unique identifier of the asset to load.
      * @returns 
      */
-    async loadAsset(id: string) : Promise<Buffer> {
+    async loadAsset(id: string): Promise<Buffer> {
         return await readFile(join(this.rootAssetDir, id))
     }
 };
