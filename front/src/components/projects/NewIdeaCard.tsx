@@ -50,10 +50,15 @@ export const NewIdeaCard = () => {
 
 
     return (<>
-        <Button onClick={() => setOpenDialog(true)}>
+        <Button onClick={() => setOpenDialog(true)}
+            sx={{
+                padding: 0,
+                width: "100%"
+            }} >
 
             <Card sx={{
                 height: "200px",
+                width: "100%",
                 backgroundColor: "primary.main",
                 cursor: "pointer",
             }}>
