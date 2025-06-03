@@ -1,4 +1,3 @@
-import { jsx } from 'react/jsx-runtime';
 import {
 	ArrowDownToolbarItem,
 	ArrowLeftToolbarItem,
@@ -11,7 +10,6 @@ import {
 	DefaultKeyboardShortcutsDialog,
 	DefaultKeyboardShortcutsDialogContent,
 	DefaultToolbar,
-	DefaultToolbarContent,
 	DiamondToolbarItem,
 	DrawToolbarItem,
 	EllipseToolbarItem,
@@ -30,14 +28,20 @@ import {
 	StarToolbarItem,
 	type TLComponents,
 	type TLUiAssetUrlOverrides,
+	type TLUiEventSource,
 	type TLUiOverrides,
 	TextToolbarItem,
 	TldrawUiMenuItem,
 	TriangleToolbarItem,
 	XBoxToolbarItem,
+	useEditor,
 	useIsToolSelected,
 	useTools,
 } from 'tldraw'
+import { MemeToolDialog } from './MemeToolDialog'
+import { useState } from 'react'
+import { MemeTool } from './MemeTool'
+
 
 // There's a guide at the bottom of this file!
 
@@ -49,9 +53,7 @@ export const uiOverrides: TLUiOverrides = {
 			icon: 'color',
 			label: 'Meme',
 			kbd: 'm',
-			onSelect: () => {
-				editor.setCurrentTool('meme-tool')
-			},
+			onSelect: () => {},
 		}
 		return tools
 	},
@@ -60,7 +62,22 @@ export const uiOverrides: TLUiOverrides = {
 export const components: TLComponents = {
 	Toolbar: (props) => {
 		const tools = useTools()
+		const editor = useEditor();
+		const [dialogOpen, setDialogOpen] = useState(false);
 		const isMemeSelected = useIsToolSelected(tools['meme'])
+
+		function handleMemeDialog() {
+			editor.blur();
+			setDialogOpen(true);
+		}
+
+		function handleMemeMessage(message: string) {
+			setDialogOpen(false);
+			if (message) {
+				tools.meme.onSelect("dialog");
+				editor.setCurrentTool('meme-tool', {message: message})
+			}
+		}
 		return (
 			<DefaultToolbar {...props}>
 				<SelectToolbarItem />
@@ -96,7 +113,8 @@ export const components: TLComponents = {
 				<HighlightToolbarItem />
 				<LaserToolbarItem />
 				<FrameToolbarItem />
-				<TldrawUiMenuItem {...tools['meme']} isSelected={isMemeSelected} />
+				<TldrawUiMenuItem {...tools['meme']} isSelected={isMemeSelected} onSelect={handleMemeDialog} />
+				<MemeToolDialog open={dialogOpen} onClose={handleMemeMessage}/>
 			</DefaultToolbar>
 		)
 	},
@@ -116,3 +134,5 @@ export const customAssetUrls: TLUiAssetUrlOverrides = {
 		'tool-meme': '/tool-meme.svg',
 	},
 }
+
+export const customTools = [MemeTool];

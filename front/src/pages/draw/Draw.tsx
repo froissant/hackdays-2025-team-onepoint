@@ -10,9 +10,7 @@ import {
 
 import '../../draw-tools/tldraw.css'
 
-import { MemeTool } from '../../draw-tools/MemeTool'
-
-import { components, customAssetUrls, uiOverrides } from '../../draw-tools/ui-overrides'
+import { components, customAssetUrls, customTools, uiOverrides } from '../../draw-tools/ui-overrides'
 import { useLocation } from 'react-router'
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
