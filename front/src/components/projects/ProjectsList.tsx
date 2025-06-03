@@ -15,7 +15,7 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/rooms`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/projects`, {
                 method: 'GET',
             });
 
@@ -43,13 +43,13 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
 
     return (
         <Grid container columns={4} spacing={2}>
-            <Grid size={1}>
-                <NewIdeaCard />
+            <Grid key={"new-idea-card-grid"} size={1}>
+                <NewIdeaCard key={"new-idea-card"}/>
             </Grid>
 
             {filteredRooms.map((project) => (
-                <Grid size={1} key={project.roomName}>
-                    <IdeaCard project={project} />
+                <Grid size={1} key={project.roomName + "-grid"}>
+                    <IdeaCard key={project.roomName + "-idea"} project={project} />
                 </Grid>
             ))}
         </Grid>

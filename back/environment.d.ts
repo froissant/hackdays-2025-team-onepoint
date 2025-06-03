@@ -4,6 +4,7 @@ declare global {
       PORT: number;
       ASSET_DIR: string;
       ROOM_DIR: string;
+      PROJECT_DIR: string;
     }
   }
 }

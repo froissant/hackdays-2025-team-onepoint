@@ -18,6 +18,8 @@ const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
 export const Draw = () => {
 	const location = useLocation();
 	const roomName = location.state?.roomName;
+
+	console.log("Draw page loaded with roomName:", roomName);
 	const store = useSync({
 		// We need to know the websocket's URI...
 		uri: `${WORKER_URL}/connect/${roomName}`,
@@ -55,7 +57,6 @@ export const Draw = () => {
 const multiplayerAssets: TLAssetStore = {
 	// to upload an asset, we prefix it with a unique id, POST it to our worker, and return the URL
 	async upload(_asset, file) {
-		console.log(file);
 		const id = uniqueId()
 
 		const objectName = `${id}-${file.name}`

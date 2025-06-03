@@ -1,18 +1,57 @@
-import { Box, Card, Icon, Typography } from "@mui/material";
+import { Box, Button, Card, Icon, Typography } from "@mui/material";
 import CardContent from '@mui/material/CardContent';
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { Link } from "react-router-dom";
+import { CreateProjectDialog } from "./CreateProjectDialog";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export const NewIdeaCard = () => {
-    return (
-        <Link
-            to="/draw"
-            state={{ roomName: "test-room" }}
-            style={{
-                textDecoration: 'none',
-                background: 'none'
-            }}>
+
+    const [openDialog, setOpenDialog] = useState(false);
+    const navigate = useNavigate();
+    const createProject = async (projectName: string) => {
+        if (!projectName) {
+            setOpenDialog(false);
+            return;
+        }
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/projects`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: projectName,
+                    updatedAt: new Date(),
+                    membersCount: 1, // Assuming the creator is the first member
+                    category: "My", // Default category for new projects
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch projects: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            // navigate to the new project page
+            // Assuming the response contains the roomId or projectId
+            navigate('/draw', {
+                state: {
+                    roomName: data.roomId, // Adjust this based on your API response
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+        setOpenDialog(false);
+    }
+
+
+    return (<>
+        <Button onClick={() => setOpenDialog(true)}>
+
             <Card sx={{
                 height: "200px",
                 backgroundColor: "primary.main",
@@ -27,6 +66,7 @@ export const NewIdeaCard = () => {
                         height: "100%",
                         color: "white",
                     }}>
+
                     <Box
                         sx={{
                             display: "flex",
@@ -44,8 +84,12 @@ export const NewIdeaCard = () => {
                             New Ideas Board
                         </Typography>
                     </Box>
+
                 </CardContent>
             </Card>
-        </Link>
+        </Button>
+
+        <CreateProjectDialog open={openDialog} onClose={createProject} />
+    </>
     );
 }

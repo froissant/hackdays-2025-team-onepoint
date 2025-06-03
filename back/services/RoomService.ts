@@ -2,6 +2,7 @@ import { TLSocketRoom } from '@tldraw/sync-core'
 import { FastifyBaseLogger } from 'fastify';
 import { RoomState } from '../models/RoomState';
 import { IRoomStorageService } from './IRoomStorageService';
+import { mkdir } from 'fs';
 
 // This service is responsible for creating, loading, and deleting rooms
 // It also handles persistence of room data
@@ -119,16 +120,5 @@ export class RoomService {
         const err = await this.mutex
         if (err) throw err
         return this.rooms.get(roomId)!.room
-    }
-
-    getRooms() {
-        return Array.from(this.rooms.values()).map((roomState, index) => ({
-            id: index,
-            title: '0' +(index +1) + " - Sample Idea Title Long Description",
-            updatedAt: new Date(new Date().getTime() - 1000 * 60 * 60 * (Math.random() * 48)), // Random hours ago
-            membersCount: index % 2 ? 3 : 5,
-            roomName: roomState.id,
-            category: index % 2 ? "My" : "Shared",
-        }));
     }
 }

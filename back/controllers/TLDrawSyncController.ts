@@ -3,14 +3,21 @@ import { RawData } from "ws";
 import { unfurl } from "unfurl.js";
 import { RoomStorageService } from "../services/RoomStorageService";
 import { RoomService } from "../services/RoomService";
+import { Project, ProjectService } from "../services/ProjectService";
+import { ProjectStorageService } from "../services/ProjectStorageService";
 
 const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 	const schemaCommon = {
 		tags: ["TLDraw Sync"],
 	};
 
-	const storageService = new RoomStorageService();
+	const storageService = new RoomStorageService(app.log);
+	storageService.init();
 	const roomService = new RoomService(app.log, storageService);
+	const projectStorageService = new ProjectStorageService(app.log);
+	projectStorageService.init();
+	const projectService =  new ProjectService(app.log, projectStorageService);
+	// Initialize the room service to load existing rooms from storage
 	roomService.init();
 	// This is the main entrypoint for the multiplayer sync
 	app.get('/connect/:roomId', { websocket: true }, async (socket, req) => {
@@ -67,10 +74,10 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 		res.send(await unfurl(url))
 	})
 
-	app.get('/rooms', async (request: FastifyRequest, reply: FastifyReply) => {
+	app.get('/projects', async (request: FastifyRequest, reply: FastifyReply) => {
 		// Create a new room
-		const rooms = roomService.getRooms();
-		reply.send(rooms);
+		const projects = await projectService.listProjects();
+		reply.send(projects);
 	});
 
 	app.post('/rooms', async (request: FastifyRequest<{ Body: { id: string } }>, reply: FastifyReply) => {
@@ -78,6 +85,17 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 		// Create a new room
 		const room = await roomService.createRoom(id);
 		reply.send(room);
+	});
+
+	app.post('/projects', async (request: FastifyRequest<{ Body: Project}>, reply: FastifyReply) => {
+		// Create a new project
+		const project = await projectService.create(request.body);
+		const room_id = "room_" + project.id;
+		await roomService.createRoom(room_id);
+		project.roomId = room_id;
+		app.log.info(`Created project with id: ${project.id} and roomId: ${project.roomId}`);
+		await projectService.update(project);
+		reply.send(project);
 	});
 
 	app.get('/rooms/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {

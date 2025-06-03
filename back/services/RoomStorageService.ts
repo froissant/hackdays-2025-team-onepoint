@@ -11,6 +11,7 @@ import { IRoomStorageService } from "./IRoomStorageService";
 import { mkdir, readdir, readFile, writeFile } from 'fs/promises'
 import { extname, join } from 'path'
 import { Readable } from 'stream'
+import { FastifyBaseLogger } from "fastify";
 
 
 export class RoomStorageService implements IRoomStorageService {
@@ -23,13 +24,24 @@ export class RoomStorageService implements IRoomStorageService {
      */
     private rootAssetDir: string;
 
+    private logger: FastifyBaseLogger;
     /**
      * Initializes the RoomStorageService.
      * The root directory is set from the ROOM_DIR environment variable.
      */
-    constructor() {
+    constructor(logger : FastifyBaseLogger) {
         this.rootDir = process.env.ROOM_DIR;
+        this.logger = logger;
         this.rootAssetDir = process.env.ASSET_DIR;
+    }
+
+    async init(): Promise<void> {
+        // Ensure the root directory exists
+        await mkdir(this.rootDir, { recursive: true });
+        // Ensure the root asset directory exists
+        await mkdir(this.rootAssetDir, { recursive: true });
+        this.logger.info(`RoomStorageService initialized with root directory: ${this.rootDir}`);
+        this.logger.info(`Asset directory initialized at: ${this.rootAssetDir}`);
     }
 
     /**
