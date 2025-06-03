@@ -17,7 +17,8 @@ import { useEffect } from 'react'
 
 import { BACKEND_URL } from '../../utils/env'
 
-const WORKER_URL = `${BACKEND_URL}/sync`
+// hack to make sure the worker URL is correct
+const WORKER_URL = `${BACKEND_URL || window.location.host}/sync`
 
 export const Draw = () => {
 	const location = useLocation();
