@@ -44,7 +44,7 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
     return (
         <Grid container columns={4} spacing={2}>
             <Grid key={"new-idea-card-grid"} size={1}>
-                <NewIdeaCard key={"new-idea-card"}/>
+                <NewIdeaCard key={"new-idea-card"} />
             </Grid>
 
             {filteredRooms.map((project) => (

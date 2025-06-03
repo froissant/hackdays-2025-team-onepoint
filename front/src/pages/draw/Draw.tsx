@@ -28,7 +28,7 @@ export const Draw = () => {
 	})
 
 	return (
-		<div style={{ height: '500px' }}>
+		<div style={{ height: 'calc(100vh - 80px)' }}>
 			<Tldraw
 				// we can pass the connected store into the Tldraw component which will handle
 				// loading states & enable multiplayer UX like cursors & a presence menu

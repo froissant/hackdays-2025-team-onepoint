@@ -70,16 +70,12 @@ createRoot(document.getElementById('root')!).render(
           />
           <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
             <Header />
-            <Container
-              sx={{
-                marginY: "18px",
-              }}>
-              <Routes>
-                <Route index element={<Home />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/draw" element={<Draw />} />
-              </Routes>
-            </Container>
+
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/draw" element={<Draw />} />
+            </Routes>
           </div>
         </BrowserRouter>
       </DsfrCustomBrandingProvider>
