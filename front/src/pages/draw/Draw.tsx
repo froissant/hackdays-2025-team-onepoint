@@ -15,9 +15,6 @@ import { useLocation } from 'react-router'
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
 
-
-const customTools = [MemeTool];
-
 export const Draw = () => {
 	const location = useLocation();
 	const roomName = location.state?.roomName;
