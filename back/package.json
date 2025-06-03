@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "tsc -w & nodemon dist/index.js"
+    "start": "tsc -b & nodemon dist/index.js"
   },
   "keywords": [],
   "author": "",
