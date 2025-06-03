@@ -1,6 +1,7 @@
 import { useSync } from '@tldraw/sync'
 import {
 	AssetRecordType,
+	Editor,
 	getHashForString,
 	type TLAssetStore,
 	type TLBookmarkAsset,
@@ -12,6 +13,7 @@ import '../../draw-tools/tldraw.css'
 
 import { components, customAssetUrls, customTools, uiOverrides } from '../../draw-tools/ui-overrides'
 import { useLocation } from 'react-router'
+import { useEffect } from 'react'
 
 const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
 
@@ -19,7 +21,59 @@ export const Draw = () => {
 	const location = useLocation();
 	const roomName = location.state?.roomName;
 
-	console.log("Draw page loaded with roomName:", roomName);
+	// This could be useState, useOptimistic, or other state
+	let pending = false;
+
+	useEffect(() => {
+		if (!pending) return;
+
+		function beforeUnload(e: BeforeUnloadEvent) {
+			e.preventDefault();
+		}
+
+		window.addEventListener('beforeunload', beforeUnload);
+
+		return () => {
+			window.removeEventListener('beforeunload', beforeUnload);
+		};
+	}, [pending]);
+
+	const uploadPreview = async (editor: Editor, roomName: string) => {
+		try {
+			// Export all shapes on current page as PNG with given dimensions
+			const shapeIds = editor.getCurrentPageShapeIds();
+			const { blob } = await editor.toImage([...shapeIds], {
+				format: 'png',
+				scale: 0.5,
+				background: true,
+			});
+
+			if (!blob) throw new Error('Failed to generate image blob');
+
+			const filename = `${roomName}`;
+
+			// Compose the upload URL (adjust WORKER_URL or backend URL accordingly)
+			const url = `${import.meta.env.VITE_BACKEND_URL}/api/upload-preview/${encodeURIComponent(filename)}`;
+
+			// Upload via PUT, sending raw blob as body
+			const response = await fetch(url, {
+				method: 'PUT',
+				body: blob,
+				headers: {
+					'Content-Type': 'application/octet-stream',
+				},
+			});
+
+			if (!response.ok) {
+				throw new Error(`Upload failed: ${response.statusText}`);
+			}
+
+			return { url }; // Return the URL of the uploaded image
+
+		} catch (e) {
+			console.error('Preview upload failed:', e);
+		}
+	};
 	const store = useSync({
 		// We need to know the websocket's URI...
 		uri: `${WORKER_URL}/connect/${roomName}`,
@@ -37,7 +91,8 @@ export const Draw = () => {
 					// @ts-expect-error required by Tldraw
 					window.editor = editor
 					// when the editor is ready, we need to register out bookmark unfurling service
-					editor.registerExternalAssetHandler('url', unfurlBookmarkUrl)
+					editor.registerExternalAssetHandler('url', unfurlBookmarkUrl);
+					setInterval(() => uploadPreview(editor, roomName), 4000);
 				}}
 
 				// Pass in the array of custom tool classes
@@ -55,8 +110,8 @@ export const Draw = () => {
 
 // How does our server handle assets like images and videos?
 const multiplayerAssets: TLAssetStore = {
-	// to upload an asset, we prefix it with a unique id, POST it to our worker, and return the URL
-	async upload(_asset, file) {
+	// to upload an asset, we prefix it with a unique id, PUT it to our worker, and return the URL
+	async upload(_asset, file: File) {
 		const id = uniqueId()
 
 		const objectName = `${id}-${file.name}`

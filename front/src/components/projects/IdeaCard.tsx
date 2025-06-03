@@ -7,7 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Link } from "react-router";
 
 type Project = {
-    roomName: string;
+    roomId: string;
     id: number;
     title: string;
     updatedAt: Date;
@@ -27,7 +27,7 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
         
         <Card component={Link}
             to="/draw"
-            state={{ roomName: project.roomName }}
+            state={{ roomName: project.roomId }}
             sx={{
                 cursor: 'pointer',
                 textDecoration: 'none', // Prevent underline
@@ -37,7 +37,7 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
             <CardMedia
                 component="img"
                 height="150"
-                image="/sample-idea.png"
+                image={import.meta.env.VITE_BACKEND_URL + `/cdn/previews/${project.roomId}.png`}
                 alt="Idea"
             />
             <CardActions disableSpacing sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

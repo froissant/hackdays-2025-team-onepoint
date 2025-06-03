@@ -91,10 +91,10 @@ const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 		// Create a new project
 		const project = await projectService.create(request.body);
 		const room_id = "room_" + project.id;
-		await roomService.createRoom(room_id);
+		const room = await roomService.createRoom(room_id);
 		project.roomId = room_id;
-		app.log.info(`Created project with id: ${project.id} and roomId: ${project.roomId}`);
 		await projectService.update(project);
+		await storageService.save(room_id, room.getCurrentSnapshot());
 		reply.send(project);
 	});
 

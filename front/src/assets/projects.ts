@@ -1,5 +1,5 @@
 export interface Project {
-    roomName: string;
+    roomId: string;
     id: number;
     title: string;
     updatedAt: Date;

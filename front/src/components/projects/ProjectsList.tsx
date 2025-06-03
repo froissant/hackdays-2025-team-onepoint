@@ -48,8 +48,8 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
             </Grid>
 
             {filteredRooms.map((project) => (
-                <Grid size={1} key={project.roomName + "-grid"}>
-                    <IdeaCard key={project.roomName + "-idea"} project={project} />
+                <Grid size={1} key={project.roomId + "-grid"}>
+                    <IdeaCard key={project.roomId + "-idea"} project={project} />
                 </Grid>
             ))}
         </Grid>

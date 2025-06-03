@@ -49,15 +49,15 @@ export class RoomService {
 
 
     onTimerTick() {
-        for (const roomState of this.rooms.values()) {
+        for (const [roomId, roomState] of this.rooms.entries()) {
             if (roomState.needsPersist) {
                 roomState.needsPersist = false
-                this.logger.info(`Saving snapshot for room with 'id': ${roomState.id}`)
-                this.storageService.save(roomState.id, roomState.room.getCurrentSnapshot())
+                this.logger.info(`Saving snapshot for room with 'id': ${roomId}`)
+                this.storageService.save(roomId, roomState.room.getCurrentSnapshot())
             }
 
             if (roomState.room.isClosed()) {
-                this.deleteRoom(roomState.id);
+                this.deleteRoom(roomId);
             }
         }
     }
