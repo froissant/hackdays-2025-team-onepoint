@@ -133,7 +133,7 @@ export const components: TLComponents = {
 
 export const customAssetUrls: TLUiAssetUrlOverrides = {
 	icons: {
-		'meme-icon': '/public/meme-icon.svg',
+		'meme-icon': '/meme-icon.svg',
 	},
 }
 
