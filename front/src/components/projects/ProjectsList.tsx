@@ -2,9 +2,9 @@ import { Grid } from "@mui/material";
 import { NewIdeaCard } from "./NewIdeaCard";
 import { IdeaCard } from "./IdeaCard";
 
-import type { Project } from "../../assets/projects";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../../utils/env";
+import type { Project } from "../../models/projects";
 
 // Define the props interface
 interface ProjectsListProps {

@@ -7,14 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Link } from "react-router";
 
 import { BACKEND_URL } from "../../utils/env";
-
-type Project = {
-    roomId: string;
-    id: number;
-    title: string;
-    updatedAt: Date;
-    membersCount: number;
-}
+import type { Project } from "../../models/projects";
 
 type IdeaCardProps = {
     project: Project;

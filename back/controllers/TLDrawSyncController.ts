@@ -3,8 +3,9 @@ import { RawData } from "ws";
 import { unfurl } from "unfurl.js";
 import { RoomStorageService } from "../services/RoomStorageService";
 import { RoomService } from "../services/RoomService";
-import { Project, ProjectService } from "../services/ProjectService";
+import { ProjectService } from "../services/ProjectService";
 import { ProjectStorageService } from "../services/ProjectStorageService";
+import { Project } from "../models/Project";
 
 const TLDrawSyncController: FastifyPluginCallback = (app, _, done) => {
 	const schemaCommon = {

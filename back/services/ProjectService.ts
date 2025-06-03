@@ -1,16 +1,7 @@
 import { FastifyBaseLogger } from "fastify";
 import { IProjectStorageService } from "./IProjectStorageService";
 import { IProjectService } from "./IProjectService";
-
-
-export interface Project {
-    id: number;
-    title: string;
-    updatedAt: Date;
-    membersCount: number;
-    roomId: string;
-    category: "My" | "Shared";
-}
+import { Project } from "../models/Project";
 
 // This service is responsible for creating, loading, and deleting projects
 // It also handles persistence of project data

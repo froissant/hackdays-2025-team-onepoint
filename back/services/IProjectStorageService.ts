@@ -1,5 +1,4 @@
-import { Project } from "./ProjectService";
-
+import { Project } from "../models/Project";
 export interface IProjectStorageService {
     listProjects(): Promise<Project[]>; // List all project files
     save(project: Project): Promise<void>; // Save a project by ID

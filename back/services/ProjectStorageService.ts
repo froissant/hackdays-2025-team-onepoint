@@ -1,8 +1,8 @@
 import { FastifyBaseLogger } from "fastify";
 import { IProjectStorageService } from "./IProjectStorageService";
-import { Project } from "./ProjectService";
 import { extname, join } from "path";
 import { readdir, readFile, unlink, writeFile, mkdir } from "fs/promises";
+import { Project } from "../models/Project";
 
 export class ProjectStorageService implements IProjectStorageService {
     private rootDir: string;

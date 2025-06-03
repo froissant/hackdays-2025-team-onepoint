@@ -1,4 +1,4 @@
-import { Project } from "./ProjectService";
+import { Project } from "../models/Project";
 
 export interface IProjectService {
     listProjects(): Promise<Project[]>; // List all project files
