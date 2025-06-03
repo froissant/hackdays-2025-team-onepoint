@@ -25,8 +25,8 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
 
             const data = await response.json();
             setRooms(data);
-        } catch (error) {
-            console.error(error);
+        } catch {
+            setRooms([]);
         }
     };
 

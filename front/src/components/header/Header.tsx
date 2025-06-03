@@ -39,7 +39,7 @@ export const Header = () => {
                         flexDirection: "row",
                         justifyContent: "center",
                         alignItems: "center",
-                        padding: "4px 6px",
+                        padding: 0,
                         gap: "6px",
                         boxSizing: "content-box",
                         maxHeight: "16px",

@@ -16,7 +16,8 @@ export const FilterBar = ({ selectedFilter, setSelectedFilter }: FilterBarProps)
             sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 1,
+                gap: "6px",
+                height: "32px",
             }}
         >
             {filters.map((filter, index) => (
