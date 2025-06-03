@@ -3,13 +3,14 @@ import MemeGenerationService from "../services/MemeGenerationService";
 import { IMemeGenerationService } from "../services/IMemeGenerationService";
 import { IAIService } from "../services/IAIService";
 import AlbertHandlerService from "../services/AlbertHandlerService";
+import LangAlbertService from "../services/LangAlbertService";
 
 const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
     const schemaCommon = {
         tags: ["Meme Generation"],
     };
 
-    const iaService : IAIService = new AlbertHandlerService();
+    const iaService : IAIService = new LangAlbertService();
     const memeService: IMemeGenerationService = new MemeGenerationService(iaService);
 
 

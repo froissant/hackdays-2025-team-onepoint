@@ -1,0 +1,992 @@
+[
+  {
+    "id": "aag",
+    "name": "Ancient Aliens Guy",
+    "sentiment": ["skepticism", "conspiracy", "awe", "bewilderment"],
+    "use_case": "Expressing disbelief or suggesting a fantastical, unproven explanation for something. Often used humorously when something seems inexplicable or too perfect."
+  },
+  {
+    "id": "ackbar",
+    "name": "It's A Trap!",
+    "sentiment": ["warning", "realization", "suspicion", "impending doom"],
+    "use_case": "Used when something appears to be a good opportunity but is, in fact, a trick or will lead to negative consequences."
+  },
+  {
+    "id": "afraid",
+    "name": "Afraid to Ask Andy",
+    "sentiment": ["ignorance", "confusion", "hesitation", "social anxiety"],
+    "use_case": "When you're too embarrassed or afraid to ask a basic question that everyone else seems to know the answer to."
+  },
+  {
+    "id": "agnes",
+    "name": "Agnes Harkness Winking",
+    "sentiment": ["mischief", "knowing", "sarcasm", "secretive"],
+    "use_case": "When implying a hidden agenda, a knowing wink at a shared secret, or a sarcastic acknowledgment."
+  },
+  {
+    "id": "aint-got-time",
+    "name": "Sweet Brown",
+    "sentiment": ["exasperation", "disbelief", "overwhelmed", "irony"],
+    "use_case": "Used to express that there are too many things happening at once, or that a situation is chaotic and defies simple explanation."
+  },
+  {
+    "id": "ams",
+    "name": "Awkward Moment Seal",
+    "sentiment": ["awkwardness", "embarrassment", "discomfort"],
+    "use_case": "To highlight a socially uncomfortable or cringeworthy situation."
+  },
+  {
+    "id": "ants",
+    "name": "Do You Want Ants?",
+    "sentiment": ["disapproval", "rhetorical question", "exaggeration", "consequence"],
+    "use_case": "When pointing out the obvious negative consequence of an action, often in a sarcastic or exaggerated way."
+  },
+  {
+    "id": "apcr",
+    "name": "Almost Politically Correct Redneck",
+    "sentiment": ["irony", "well-intentioned but flawed", "accidental progress"],
+    "use_case": "Used to describe someone who attempts to be progressive or politically correct but falls short in a humorous, often stereotypical way."
+  },
+  {
+    "id": "atis",
+    "name": "And Then I Said",
+    "sentiment": ["amusement", "triumph", "boasting", "schadenfreude"],
+    "use_case": "To convey a humorous anecdote, particularly one where you delivered a clever retort or witnessed something ridiculous."
+  },
+  {
+    "id": "away",
+    "name": "Life... Finds a Way",
+    "sentiment": ["resilience", "inevitability", "determination", "hope"],
+    "use_case": "When something unexpected or seemingly impossible happens, suggesting that nature or circumstances will always find a path."
+  },
+  {
+    "id": "awesome",
+    "name": "Socially Awesome Penguin",
+    "sentiment": ["confidence", "smoothness", "success", "social grace"],
+    "use_case": "To describe a moment of unexpected social triumph or coolness."
+  },
+  {
+    "id": "awesome-awkward",
+    "name": "Socially Awesome Awkward Penguin",
+    "sentiment": ["mixed feelings", "conflicted", "partially successful"],
+    "use_case": "When something starts off well but then takes an awkward turn, or vice-versa, combining social success with social blunder."
+  },
+  {
+    "id": "awkward",
+    "name": "Socially Awkward Penguin",
+    "sentiment": ["awkwardness", "shame", "social anxiety", "cringe"],
+    "use_case": "To illustrate a relatable moment of social ineptitude or discomfort."
+  },
+  {
+    "id": "awkward-awesome",
+    "name": "Socially Awkward Awesome Penguin",
+    "sentiment": ["mixed feelings", "unexpected success", "accidental triumph"],
+    "use_case": "When an awkward situation surprisingly leads to a positive or successful outcome."
+  },
+  {
+    "id": "bad",
+    "name": "You Should Feel Bad",
+    "sentiment": ["disappointment", "judgment", "sarcasm", "guilt-tripping"],
+    "use_case": "Used to express disapproval or mockingly suggest someone should feel bad about a decision or action."
+  },
+  {
+    "id": "badchoice",
+    "name": "Milk Was a Bad Choice",
+    "sentiment": ["regret", "poor judgment", "discomfort", "consequences"],
+    "use_case": "To express regret over a poor decision or a choice that led to an unpleasant outcome."
+  },
+  {
+    "id": "bd",
+    "name": "Butthurt Dweller",
+    "sentiment": ["resentment", "anger", "bitterness", "envy"],
+    "use_case": "Used to depict someone who is overly sensitive, easily offended, or holds grudges, often in a stereotypical internet context."
+  },
+  {
+    "id": "because",
+    "name": "Men in Black",
+    "sentiment": ["explanation", "simplification", "dismissal", "obviousness"],
+    "use_case": "To provide a simple, often oversimplified or humorous explanation for a complex situation, implying it's beyond understanding or just 'because'."
+  },
+  {
+    "id": "bender",
+    "name": "I'm Going to Build My Own Theme Park",
+    "sentiment": ["determination", "independence", "frustration", "innovation"],
+    "use_case": "When expressing the desire to do something yourself, often out of frustration with existing options or a desire for complete control."
+  },
+  {
+    "id": "bihw",
+    "name": "But It's Honest Work",
+    "sentiment": ["pride", "humble satisfaction", "justification", "resignation"],
+    "use_case": "To acknowledge a job or task that might be simple, low-paying, or not glamorous, but is still legitimate and honest."
+  },
+  {
+    "id": "bilbo",
+    "name": "Why Shouldn't I Keep It",
+    "sentiment": ["possessiveness", "justification", "selfishness", "innocent defiance"],
+    "use_case": "When someone wants to keep something they found or acquired, often with a subtle hint of mischievous justification."
+  },
+  {
+    "id": "biw",
+    "name": "Baby Insanity Wolf",
+    "sentiment": ["extreme", "reckless", "dark humor", "shocking"],
+    "use_case": "To describe a mildly transgressive or inappropriate action, a toned-down version of Insanity Wolf."
+  },
+  {
+    "id": "blb",
+    "name": "Bad Luck Brian",
+    "sentiment": ["misfortune", "irony", "sympathy", "futility"],
+    "use_case": "To illustrate a situation where someone experiences persistent, often comical, bad luck despite good intentions."
+  },
+  {
+    "id": "boat",
+    "name": "I Should Buy a Boat Cat",
+    "sentiment": ["contemplation", "daydreaming", "escape", "desire for change"],
+    "use_case": "When you're contemplating a significant life change or making a spontaneous, often impractical, decision."
+  },
+  {
+    "id": "bongo",
+    "name": "Bongo Cat",
+    "sentiment": ["joy", "playfulness", "enthusiasm", "innocence"],
+    "use_case": "To express happiness, excitement, or to add a lighthearted, playful touch to a situation, especially when accompanying music or a rhythmic action."
+  },
+  {
+    "id": "both",
+    "name": "Why Not Both?",
+    "sentiment": ["inclusivity", "compromise", "indecision", "greed"],
+    "use_case": "When faced with a choice between two good options, suggesting that both can be pursued or enjoyed."
+  },
+  {
+    "id": "box",
+    "name": "What's in the box!?",
+    "sentiment": ["curiosity", "desperation", "shock", "mystery"],
+    "use_case": "To express intense curiosity or desperation to know the contents of something unknown or mysterious."
+  },
+  {
+    "id": "bs",
+    "name": "This is Bull, Shark",
+    "sentiment": ["disbelief", "frustration", "absurdity", "sarcasm"],
+    "use_case": "When something is clearly absurd, illogical, or unbelievable, often in a humorous, exaggerated way."
+  },
+  {
+    "id": "bus",
+    "name": "Two Guys on a Bus",
+    "sentiment": ["discomfort", "judgment", "awkwardness", "social observation"],
+    "use_case": "To highlight an uncomfortable or strange public interaction, often implying judgment or confusion from an observer's perspective."
+  },
+  {
+    "id": "buzz",
+    "name": "X, X Everywhere",
+    "sentiment": ["overwhelm", "abundance", "repetition", "annoyance"],
+    "use_case": "When a particular thing, person, or idea is present in overwhelming quantities or appears everywhere."
+  },
+  {
+    "id": "cake",
+    "name": "Office Space Milton",
+    "sentiment": ["neglect", "underappreciation", "passive aggression", "resentment"],
+    "use_case": "Used to express feeling overlooked, underappreciated, or denied something you believe you're entitled to."
+  },
+  {
+    "id": "captain",
+    "name": "I am the Captain Now",
+    "sentiment": ["dominance", "assertion", "control", "takeover"],
+    "use_case": "When someone takes control of a situation, especially unexpectedly or forcefully."
+  },
+  {
+    "id": "cb",
+    "name": "Confession Bear",
+    "sentiment": ["guilt", "shame", "revelation", "catharsis"],
+    "use_case": "To reveal a secret, often embarrassing or controversial, that you've been holding onto."
+  },
+  {
+    "id": "cbb",
+    "name": "Communist Bugs Bunny",
+    "sentiment": ["communism", "sharing", "collective ownership", "sarcasm"],
+    "use_case": "To playfully advocate for shared resources or collective action, often ironically or satirically."
+  },
+  {
+    "id": "cbg",
+    "name": "Comic Book Guy",
+    "sentiment": ["superiority", "judgment", "elitism", "disappointment"],
+    "use_case": "Used to express disdain or condescension towards something perceived as inferior, often from a position of self-proclaimed expertise."
+  },
+  {
+    "id": "center",
+    "name": "What is this, a Center for Ants?!",
+    "sentiment": ["exaggeration", "disbelief", "sarcasm", "smallness"],
+    "use_case": "To express disbelief or frustration at something being ridiculously small or inadequate."
+  },
+  {
+    "id": "ch",
+    "name": "Captain Hindsight",
+    "sentiment": ["obviousness", "sarcasm", "judgment", "missed opportunity"],
+    "use_case": "Used to point out something that is obvious in retrospect, often in a sarcastic or condescending manner."
+  },
+  {
+    "id": "cheems",
+    "name": "Cheems",
+    "sentiment": ["anxiety", "innocence", "cuteness", "mild sadness"],
+    "use_case": "To express a sense of mild anxiety, shyness, or to add a touch of innocent awkwardness to a statement, often with 'm' added to words."
+  },
+  {
+    "id": "chosen",
+    "name": "You Were the Chosen One!",
+    "sentiment": ["disappointment", "betrayal", "regret", "broken hope"],
+    "use_case": "To express profound disappointment or betrayal when someone fails to live up to high expectations."
+  },
+  {
+    "id": "country",
+    "name": "What a Country",
+    "sentiment": ["irony", "sarcasm", "disbelief", "resignation"],
+    "use_case": "Used sarcastically to comment on absurd, frustrating, or ironic situations, often relating to societal or political issues."
+  },
+  {
+    "id": "crazypills",
+    "name": "I Feel Like I'm Taking Crazy Pills",
+    "sentiment": ["confusion", "frustration", "disbelief", "gaslighting"],
+    "use_case": "When you feel like you're the only one who sees the absurdity or illogic of a situation."
+  },
+  {
+    "id": "crow",
+    "name": "Get Better Material",
+    "sentiment": ["boredom", "disapproval", "skepticism", "critique"],
+    "use_case": "To criticize something for being unoriginal, uninspired, or simply not good enough."
+  },
+  {
+    "id": "cryingfloor",
+    "name": "Crying on Floor",
+    "sentiment": ["despair", "overwhelm", "melodrama", "sadness"],
+    "use_case": "To express extreme sadness, frustration, or feeling overwhelmed, often melodramatically."
+  },
+  {
+    "id": "dbg",
+    "name": "Expectation vs. Reality",
+    "sentiment": ["disappointment", "irony", "humorous comparison", "reality check"],
+    "use_case": "To illustrate the stark contrast between what was anticipated and what actually happened."
+  },
+  {
+    "id": "disastergirl",
+    "name": "Disaster Girl",
+    "sentiment": ["mischief", "culpability", "smugness", "irony"],
+    "use_case": "When someone is implicated in or appears to enjoy a chaotic or destructive situation."
+  },
+  {
+    "id": "dodgson",
+    "name": "See? Nobody Cares",
+    "sentiment": ["indifference", "disregard", "cynicism", "dismissal"],
+    "use_case": "To dismiss someone's concerns, complaints, or self-importance by implying that no one is interested."
+  },
+  {
+    "id": "doge",
+    "name": "Doge",
+    "sentiment": ["awe", "surprise", "confusion", "irony", "cuteness"],
+    "use_case": "To express a variety of reactions, often humorous, characterized by broken English and enthusiastic, sometimes ironic, observations."
+  },
+  {
+    "id": "drake",
+    "name": "Drakeposting",
+    "sentiment": ["preference", "dislike", "approval", "rejection"],
+    "use_case": "To express a clear preference for one thing over another, often used for hot takes or relatable comparisons."
+  },
+  {
+    "id": "drunk",
+    "name": "Drunk Baby",
+    "sentiment": ["confusion", "disorientation", "humor", "unpredictability"],
+    "use_case": "To depict a situation where someone is acting in a clumsy, disoriented, or unexpectedly funny way, as if intoxicated."
+  },
+  {
+    "id": "dsm",
+    "name": "Dating Site Murderer",
+    "sentiment": ["creepy", "suspicious", "untrustworthy", "danger"],
+    "use_case": "To highlight someone's unsettling or suspicious online dating profile or behavior."
+  },
+  {
+    "id": "dwight",
+    "name": "Schrute Facts",
+    "sentiment": ["authority", "pedantry", "absurdity", "irony"],
+    "use_case": "To present a seemingly factual statement that is often absurd, overly specific, or delivered with a sense of self-important knowledge."
+  },
+  {
+    "id": "elf",
+    "name": "You Sit on a Throne of Lies",
+    "sentiment": ["accusation", "disbelief", "indignation", "truth-telling"],
+    "use_case": "To accuse someone of dishonesty or to express disbelief in their claims."
+  },
+  {
+    "id": "ermg",
+    "name": "Ermahgerd",
+    "sentiment": ["excitement", "enthusiasm", "naivety", "exaggeration"],
+    "use_case": "To convey exaggerated enthusiasm or excitement, often in a childlike or slightly awkward manner."
+  },
+  {
+    "id": "fa",
+    "name": "Forever Alone",
+    "sentiment": ["loneliness", "sadness", "isolation", "self-pity"],
+    "use_case": "To express feelings of isolation, lack of companionship, or being perpetually single."
+  },
+  {
+    "id": "facepalm",
+    "name": "Facepalm",
+    "sentiment": ["exasperation", "disappointment", "embarrassment", "frustration"],
+    "use_case": "To express extreme exasperation or dismay at someone's stupidity, a bad decision, or a cringe-worthy situation."
+  },
+  {
+    "id": "fbf",
+    "name": "Foul Bachelor Frog",
+    "sentiment": ["laziness", "grossness", "unhygienic", "bachelor lifestyle"],
+    "use_case": "To describe unsanitary or unkempt habits, often associated with a stereotypical bachelor lifestyle."
+  },
+  {
+    "id": "feelsgood",
+    "name": "Feels Good",
+    "sentiment": ["satisfaction", "pleasure", "accomplishment", "comfort"],
+    "use_case": "To express a feeling of contentment or satisfaction after doing something, often something simple or slightly indulgent."
+  },
+  {
+    "id": "fetch",
+    "name": "Stop Trying to Make Fetch Happen",
+    "sentiment": ["disapproval", "rejection", "futile effort", "annoyance"],
+    "use_case": "To dismiss something as being uncool, forced, or never going to catch on."
+  },
+  {
+    "id": "fine",
+    "name": "This is Fine",
+    "sentiment": ["denial", "resignation", "anxiety", "passive acceptance"],
+    "use_case": "To express a false sense of calm or acceptance in a rapidly deteriorating or chaotic situation."
+  },
+  {
+    "id": "firsttry",
+    "name": "First Try!",
+    "sentiment": ["sarcasm", "irony", "failure", "persistence"],
+    "use_case": "Used ironically to highlight a spectacular failure or a task that clearly took multiple attempts."
+  },
+  {
+    "id": "fmr",
+    "name": "Fuck Me, Right?",
+    "sentiment": ["sarcasm", "self-pity", "exasperation", "unjust treatment"],
+    "use_case": "To sarcastically express being unfairly treated or overlooked, often after having done something commendable."
+  },
+  {
+    "id": "fry",
+    "name": "Futurama Fry",
+    "sentiment": ["uncertainty", "skepticism", "contemplation", "ambivalence"],
+    "use_case": "When unsure whether something is good or bad, or trying to understand contradictory information."
+  },
+  {
+    "id": "fwp",
+    "name": "First World Problems",
+    "sentiment": ["triviality", "privileged", "irony", "complaining"],
+    "use_case": "To mock or acknowledge petty complaints that arise from a position of relative comfort and privilege."
+  },
+  {
+    "id": "gandalf",
+    "name": "Confused Gandalf",
+    "sentiment": ["confusion", "bewilderment", "disorientation", "puzzlement"],
+    "use_case": "When confronted with something that is utterly perplexing or makes no sense."
+  },
+  {
+    "id": "gears",
+    "name": "You Know What Really Grinds My Gears?",
+    "sentiment": ["annoyance", "frustration", "pet peeve", "complaining"],
+    "use_case": "To introduce a complaint or express strong irritation about a specific topic or behavior."
+  },
+  {
+    "id": "genie",
+    "name": "Genie Lamp",
+    "sentiment": ["desire", "wishful thinking", "ironic wishes", "consequences"],
+    "use_case": "To express a wish or a hypothetical scenario, often implying unexpected or problematic outcomes."
+  },
+  {
+    "id": "ggg",
+    "name": "Good Guy Greg",
+    "sentiment": ["kindness", "generosity", "integrity", "altruism"],
+    "use_case": "To highlight acts of kindness, helpfulness, or generally good behavior."
+  },
+  {
+    "id": "glasses",
+    "name": "Peter Parker's Glasses",
+    "sentiment": ["clarity", "realization", "perspective shift", "enlightenment"],
+    "use_case": "To show a sudden realization or a shift in perspective, where something previously unclear becomes obvious."
+  },
+  {
+    "id": "gone",
+    "name": "And It's Gone",
+    "sentiment": ["loss", "disappointment", "transience", "quick disappearance"],
+    "use_case": "When something valuable or desired disappears very quickly, often due to poor planning or external factors."
+  },
+  {
+    "id": "grumpycat",
+    "name": "Grumpy Cat",
+    "sentiment": ["grumpy", "displeasure", "cynicism", "pessimism"],
+    "use_case": "To express general displeasure, negativity, or a cynical outlook on life."
+  },
+  {
+    "id": "hagrid",
+    "name": "I Should Not Have Said That",
+    "sentiment": ["regret", "blunder", "awkwardness", "speaking too soon"],
+    "use_case": "When you accidentally blurt out something you shouldn't have, immediately regretting it."
+  },
+  {
+    "id": "happening",
+    "name": "It's Happening",
+    "sentiment": ["excitement", "anticipation", "fulfillment", "progress"],
+    "use_case": "To express excitement and anticipation when a long-awaited event or prophecy is finally coming true."
+  },
+  {
+    "id": "harold",
+    "name": "Hide the Pain Harold",
+    "sentiment": ["forced happiness", "internal struggle", "awkwardness", "discomfort"],
+    "use_case": "When someone is trying to appear happy or normal despite clearly experiencing internal pain or discomfort."
+  },
+  {
+    "id": "hipster",
+    "name": "Hipster Barista",
+    "sentiment": ["pretentiousness", "elitism", "irony", "trendiness"],
+    "use_case": "To mock pretentious or overly trendy individuals, often associated with niche interests or obscure knowledge."
+  },
+  {
+    "id": "icanhas",
+    "name": "I Can Has Cheezburger?",
+    "sentiment": ["desire", "cuteness", "pleading", "simple wants"],
+    "use_case": "To express a simple desire or craving, often in a cute or humorous way, like a pet asking for food."
+  },
+  {
+    "id": "imsorry",
+    "name": "Oh, I'm Sorry, I Thought This Was America",
+    "sentiment": ["sarcasm", "disbelief", "indignation", "freedom"],
+    "use_case": "To sarcastically express outrage or indignation at perceived infringements on freedom or personal liberty."
+  },
+  {
+    "id": "inigo",
+    "name": "Inigo Montoya",
+    "sentiment": ["exasperation", "correction", "repetition", "annoyance"],
+    "use_case": "When someone repeatedly makes a mistake or misunderstanding, and you feel the need to correct them with exasperation."
+  },
+  {
+    "id": "interesting",
+    "name": "The Most Interesting Man in the World",
+    "sentiment": ["coolness", "sophistication", "exaggeration", "irony"],
+    "use_case": "To describe someone as exceptionally impressive or to make an exaggerated, often ironic, claim about their abilities or experiences."
+  },
+  {
+    "id": "ive",
+    "name": "Jony Ive Redesigns Things",
+    "sentiment": ["design", "minimalism", "irony", "impracticality"],
+    "use_case": "To humorously criticize or satirize minimalist design choices that might prioritize aesthetics over practicality, often associated with Apple products."
+  },
+  {
+    "id": "iw",
+    "name": "Insanity Wolf",
+    "sentiment": ["extreme", "reckless", "dark humor", "shocking"],
+    "use_case": "To depict extremely daring, reckless, or socially unacceptable actions with dark humor."
+  },
+  {
+    "id": "jd",
+    "name": "Joseph Ducreux",
+    "sentiment": ["old-fashioned", "formal", "irony", "translation"],
+    "use_case": "To present modern rap lyrics or slang in an archaic, formal language for comedic effect."
+  },
+  {
+    "id": "jetpack",
+    "name": "Nothing To Do Here",
+    "sentiment": ["casual dismissal", "escape", "abandonment", "problem avoidance"],
+    "use_case": "When casually leaving a chaotic or problematic situation, implying there's nothing more that can be done or that you're escaping from it."
+  },
+  {
+    "id": "jim",
+    "name": "Jim Halpert Pointing to Whiteboard",
+    "sentiment": ["obviousness", "explanation", "sarcasm", "pointing out the obvious"],
+    "use_case": "To highlight something extremely obvious or to sarcastically explain a simple concept."
+  },
+  {
+    "id": "joker",
+    "name": "It's Simple, Kill the Batman",
+    "sentiment": ["simplification", "absurdity", "dark humor", "evil plan"],
+    "use_case": "To satirically present a complex problem with an overly simplistic, often extreme or villainous, solution."
+  },
+  {
+    "id": "jw",
+    "name": "Probably Not a Good Idea",
+    "sentiment": ["caution", "warning", "skepticism", "bad decision"],
+    "use_case": "To express doubt or warn against an action that is clearly ill-advised or likely to lead to negative consequences."
+  },
+  {
+    "id": "keanu",
+    "name": "Conspiracy Keanu",
+    "sentiment": ["conspiracy", "confusion", "realization", "paranoia"],
+    "use_case": "When contemplating a conspiracy theory or a mind-blowing realization about common occurrences."
+  },
+  {
+    "id": "kermit",
+    "name": "But That's None of My Business",
+    "sentiment": ["gossip", "sarcasm", "judgment", "passive aggression"],
+    "use_case": "To make a pointed observation or veiled criticism about someone else's behavior, while pretending to be indifferent."
+  },
+  {
+    "id": "khaby-lame",
+    "name": "Khaby Lame Shrug",
+    "sentiment": ["simplicity", "obviousness", "disbelief", "frustration"],
+    "use_case": "To demonstrate the absurdity of overly complicated solutions to simple problems, or to express disbelief at something basic."
+  },
+  {
+    "id": "kk",
+    "name": "Karate Kyle",
+    "sentiment": ["reckless", "violent", "over-the-top", "dark humor"],
+    "use_case": "To depict extreme or violent reactions to everyday situations, often with a humorous, dark twist."
+  },
+  {
+    "id": "kombucha",
+    "name": "Kombucha Girl",
+    "sentiment": ["confusion", "disgust", "delight", "mixed reactions"],
+    "use_case": "To illustrate a rapid shift in emotions or opinions, typically from skepticism or disgust to surprise or pleasure."
+  },
+  {
+    "id": "kramer",
+    "name": "Kramer, What's Going On In There?",
+    "sentiment": ["curiosity", "confusion", "chaos", "nosiness"],
+    "use_case": "When trying to understand a chaotic or mysterious situation happening nearby."
+  },
+  {
+    "id": "leo",
+    "name": "Leo Strutting",
+    "sentiment": ["confidence", "arrogance", "success", "swagger"],
+    "use_case": "To express a feeling of immense confidence, triumph, or swagger, often after achieving something significant."
+  },
+  {
+    "id": "light",
+    "name": "Everything the Light Touches is Our Kingdom",
+    "sentiment": ["dominance", "ambition", "ownership", "exaggeration"],
+    "use_case": "To assert dominance or express an ambitious desire to control or own a vast area or concept."
+  },
+  {
+    "id": "live",
+    "name": "Do It Live!",
+    "sentiment": ["spontaneity", "risk-taking", "impatience", "authenticity"],
+    "use_case": "To advocate for doing something immediately and authentically, without rehearsal or delay."
+  },
+  {
+    "id": "ll",
+    "name": "Laughing Lizard",
+    "sentiment": ["amusement", "schadenfreude", "mockery", "hilarity"],
+    "use_case": "To react with great amusement or mockery to someone else's misfortune or a ridiculous situation."
+  },
+  {
+    "id": "lrv",
+    "name": "Laundry Room Viking",
+    "sentiment": ["masculinity", "chores", "irony", "domesticity"],
+    "use_case": "To humorously combine traditionally masculine imagery with mundane domestic tasks."
+  },
+  {
+    "id": "mb",
+    "name": "Member Berries",
+    "sentiment": ["nostalgia", "simplicity", "sentimentality", "escapism"],
+    "use_case": "To evoke a sense of nostalgic longing for simpler times or past cultural touchstones."
+  },
+  {
+    "id": "michael-scott",
+    "name": "Michael Scott No God No",
+    "sentiment": ["despair", "disbelief", "horror", "overwhelm"],
+    "use_case": "To express extreme dismay, horror, or disbelief at a terrible situation or realization."
+  },
+  {
+    "id": "mini-keanu",
+    "name": "Mini Keanu Reeves",
+    "sentiment": ["surprise", "awe", "existential dread", "cuteness"],
+    "use_case": "To express surprise or a realization that something profound or unexpected is happening, often with a touch of existential thought."
+  },
+  {
+    "id": "mmm",
+    "name": "Minor Mistake Marvin",
+    "sentiment": ["failure", "awkwardness", "bad luck", "trivial mistakes"],
+    "use_case": "To illustrate a small, often unintentional, mistake that leads to disproportionately awkward or negative consequences."
+  },
+  {
+    "id": "money",
+    "name": "Shut Up and Take My Money!",
+    "sentiment": ["desire", "enthusiasm", "consumerism", "impulse buying"],
+    "use_case": "To express an overwhelming desire to purchase something immediately, regardless of cost."
+  },
+  {
+    "id": "mordor",
+    "name": "One Does Not Simply Walk into Mordor",
+    "sentiment": ["difficulty", "impossibility", "complexity", "warning"],
+    "use_case": "To emphasize the extreme difficulty or impossibility of a seemingly simple task or goal."
+  },
+  {
+    "id": "morpheus",
+    "name": "Matrix Morpheus",
+    "sentiment": ["revelation", "truth", "choice", "deep thought"],
+    "use_case": "To present a profound truth or a choice that requires deep contemplation, often challenging preconceived notions."
+  },
+  {
+    "id": "mw",
+    "name": "I Guarantee It",
+    "sentiment": ["confidence", "assurance", "certainty", "conviction"],
+    "use_case": "To assert absolute certainty about an outcome or a fact."
+  },
+  {
+    "id": "nice",
+    "name": "So I Got That Goin' For Me, Which is Nice",
+    "sentiment": ["resignation", "small comfort", "optimism in adversity", "understatement"],
+    "use_case": "To find a small positive amidst a generally negative or challenging situation."
+  },
+  {
+    "id": "noidea",
+    "name": "I Have No Idea What I'm Doing",
+    "sentiment": ["confusion", "incompetence", "overwhelm", "imposter syndrome"],
+    "use_case": "To admit to being completely lost, confused, or unprepared for a task or situation."
+  },
+  {
+    "id": "oag",
+    "name": "Overly Attached Girlfriend",
+    "sentiment": ["possessiveness", "obsession", "clinginess", "dark humor"],
+    "use_case": "To humorously depict extreme clinginess, jealousy, or obsessive behavior in a relationship."
+  },
+  {
+    "id": "officespace",
+    "name": "That Would Be Great",
+    "sentiment": ["passive aggression", "request", "sarcasm", "expectation"],
+    "use_case": "To make a polite but firm request, often implying that the desired action is long overdue or expected."
+  },
+  {
+    "id": "older",
+    "name": "An Older Code Sir, But It Checks Out",
+    "sentiment": ["approval", "validation", "acceptance", "trust"],
+    "use_case": "To confirm that something, despite being old or seemingly outdated, is still functional, correct, or reliable."
+  },
+  {
+    "id": "oprah",
+    "name": "Oprah You Get a Car",
+    "sentiment": ["generosity", "abundance", "excitement", "overwhelm"],
+    "use_case": "To express extreme generosity or to imply that many people are receiving something desirable."
+  },
+  {
+    "id": "patrick",
+    "name": "Push it somewhere else Patrick",
+    "sentiment": ["annoyance", "discomfort", "avoidance", "problem-dumping"],
+    "use_case": "To express the desire for someone to take their problem or nuisance elsewhere, avoiding dealing with it yourself."
+  },
+  {
+    "id": "persian",
+    "name": "Persian Cat Room Guardian",
+    "sentiment": ["alertness", "judgment", "suspicion", "watchful"],
+    "use_case": "To depict a watchful, judgmental, or slightly unnerving presence, often guarding something or observing with suspicion."
+  },
+  {
+    "id": "philosoraptor",
+    "name": "Philosoraptor",
+    "sentiment": ["contemplation", "paradox", "deep thought", "existentialism"],
+    "use_case": "To pose a rhetorical, often humorous, philosophical question that highlights a paradox or unexpected truth."
+  },
+  {
+    "id": "pooh",
+    "name": "Tuxedo Winnie the Pooh",
+    "sentiment": ["sophistication", "simplicity", "contrast", "classy"],
+    "use_case": "To contrast a simple or common concept with a more sophisticated or refined version, often humorously."
+  },
+  {
+    "id": "puffin",
+    "name": "Unpopular opinion puffin",
+    "sentiment": ["controversy", "honesty", "provocation", "dissent"],
+    "use_case": "To express a widely disliked or controversial opinion, often intentionally provocative."
+  },
+  {
+    "id": "red",
+    "name": "Oh, Is That What We're Going to Do Today?",
+    "sentiment": ["challenge", "defiance", "sarcasm", "escalation"],
+    "use_case": "To express surprise or a sarcastic challenge when someone takes an unexpected or aggressive stance."
+  },
+  {
+    "id": "regret",
+    "name": "I Immediately Regret This Decision!",
+    "sentiment": ["regret", "poor judgment", "instant consequences", "facepalm"],
+    "use_case": "To express immediate regret after making a hasty or ill-advised decision."
+  },
+  {
+    "id": "remembers",
+    "name": "Pepperidge Farm Remembers",
+    "sentiment": ["nostalgia", "sarcasm", "truth-telling", "holding accountable"],
+    "use_case": "To sarcastically recall a past event or behavior that contradicts a current statement or action, implying hypocrisy or forgetfulness."
+  },
+  {
+    "id": "rollsafe",
+    "name": "Roll Safe",
+    "sentiment": ["cleverness", "bad advice", "irony", "life hacks"],
+    "use_case": "To offer intentionally bad or obvious advice presented as clever life hacks, often for humorous or ironic effect."
+  },
+  {
+    "id": "sad-biden",
+    "name": "Sad Joe Biden",
+    "sentiment": ["sadness", "disappointment", "sympathy", "resignation"],
+    "use_case": "To express feelings of sadness, disappointment, or empathy, often in a political context."
+  },
+  {
+    "id": "sad-boehner",
+    "name": "Sad John Boehner",
+    "sentiment": ["sadness", "regret", "melancholy", "resignation"],
+    "use_case": "Similar to other 'sad politician' memes, used to convey a sense of melancholy, defeat, or resignation, often in a political context."
+  },
+  {
+    "id": "sad-bush",
+    "name": "Sad George Bush",
+    "sentiment": ["sadness", "disappointment", "reflection", "melancholy"],
+    "use_case": "To express feelings of sadness or contemplation, often in response to events or news."
+  },
+  {
+    "id": "sad-clinton",
+    "name": "Sad Bill Clinton",
+    "sentiment": ["sadness", "disappointment", "reflection", "melancholy"],
+    "use_case": "To express feelings of sadness or contemplation, often in a political context or personal reflection."
+  },
+  {
+    "id": "sad-obama",
+    "name": "Sad Barack Obama",
+    "sentiment": ["sadness", "reflection", "disappointment", "solemnity"],
+    "use_case": "To convey a sense of sadness, somber reflection, or disappointment, often in a political or social context."
+  },
+  {
+    "id": "sadfrog",
+    "name": "Feels Bad Man",
+    "sentiment": ["sadness", "empathy", "disappointment", "pity"],
+    "use_case": "To express sympathy for someone's misfortune or to convey a general feeling of sadness."
+  },
+  {
+    "id": "saltbae",
+    "name": "Salt Bae",
+    "sentiment": ["flair", "exaggeration", "passion", "drama"],
+    "use_case": "To emphasize the dramatic addition of something, often seasoning, or to add a touch of flair to an action."
+  },
+  {
+    "id": "sarcasticbear",
+    "name": "Sarcastic Bear",
+    "sentiment": ["sarcasm", "irony", "dry humor", "disbelief"],
+    "use_case": "To deliver sarcastic comments, especially in response to obvious or foolish statements."
+  },
+  {
+    "id": "say",
+    "name": "Say the Line, Bart!",
+    "sentiment": ["anticipation", "insistence", "repetition", "predictability"],
+    "use_case": "To express anticipation or insistence for someone to utter a famous or predictable catchphrase or statement."
+  },
+  {
+    "id": "sb",
+    "name": "Scumbag Brain",
+    "sentiment": ["self-sabotage", "frustration", "annoyance", "irony"],
+    "use_case": "To highlight when your own brain or body betrays you, leading to inconvenient or frustrating situations."
+  },
+  {
+    "id": "scc",
+    "name": "Sudden Clarity Clarence",
+    "sentiment": ["realization", "epiphany", "understanding", "obviousness"],
+    "use_case": "To illustrate a sudden moment of profound realization or understanding about something previously overlooked."
+  },
+  {
+    "id": "seagull",
+    "name": "Inhaling Seagull",
+    "sentiment": ["shock", "disbelief", "exaggeration", "gasping"],
+    "use_case": "To depict a dramatic gasp or shock at something surprising or outrageous."
+  },
+  {
+    "id": "sf",
+    "name": "Sealed Fate",
+    "sentiment": ["inevitability", "resignation", "doom", "acceptance"],
+    "use_case": "When something is inevitable and cannot be changed, often implying a negative outcome."
+  },
+  {
+    "id": "sk",
+    "name": "Skeptical Third World Kid",
+    "sentiment": ["skepticism", "disbelief", "cynicism", "unimpressed"],
+    "use_case": "To express doubt or an unimpressed reaction to something that others might find impressive or exciting."
+  },
+  {
+    "id": "ski",
+    "name": "Super Cool Ski Instructor",
+    "sentiment": ["condescension", "advice", "irony", "obviousness"],
+    "use_case": "To give seemingly profound but ultimately obvious or condescending advice, often sarcastically."
+  },
+  {
+    "id": "slap",
+    "name": "Will Smith Slapping Chris Rock",
+    "sentiment": ["shock", "anger", "violence", "confrontation"],
+    "use_case": "To represent a sudden, aggressive, and shocking confrontation or reaction to an insult."
+  },
+  {
+    "id": "snek",
+    "name": "Skeptical Snake",
+    "sentiment": ["skepticism", "suspicion", "doubt", "unconvinced"],
+    "use_case": "To express suspicion or doubt about someone's claims or a situation."
+  },
+  {
+    "id": "soa",
+    "name": "Seal of Approval",
+    "sentiment": ["approval", "endorsement", "satisfaction", "quality"],
+    "use_case": "To express strong approval or endorsement of something."
+  },
+  {
+    "id": "sohappy",
+    "name": "I Would Be So Happy",
+    "sentiment": ["anticipation", "hope", "desire", "dreaming"],
+    "use_case": "To express immense happiness or relief if a particular desired outcome were to occur."
+  },
+  {
+    "id": "sohot",
+    "name": "So Hot Right Now",
+    "sentiment": ["trendiness", "popularity", "fame", "buzz"],
+    "use_case": "To highlight something that is currently very popular, fashionable, or trending."
+  },
+  {
+    "id": "soup-nazi",
+    "name": "No Soup for You",
+    "sentiment": ["strictness", "denial", "no exceptions", "authoritative"],
+    "use_case": "To sternly refuse something or to enforce a strict rule with no exceptions."
+  },
+  {
+    "id": "sparta",
+    "name": "This is Sparta!",
+    "sentiment": ["defiance", "power", "aggression", "declaration"],
+    "use_case": "To make a dramatic declaration of defiance, power, or to indicate a decisive, aggressive action."
+  },
+  {
+    "id": "spiderman",
+    "name": "Spider-Man Pointing at Spider-Man",
+    "sentiment": ["confusion", "identity", "mirroring", "irony"],
+    "use_case": "To highlight a situation where two similar or identical entities are pointing out each other's similarities or hypocrisy."
+  },
+  {
+    "id": "spongebob",
+    "name": "Mocking Spongebob",
+    "sentiment": ["mockery", "sarcasm", "disbelief", "imitation"],
+    "use_case": "To mock someone's statement or behavior by repeating it in an exaggerated, alternating capitalization format."
+  },
+  {
+    "id": "ss",
+    "name": "Scumbag Steve",
+    "sentiment": ["selfishness", "unreliability", "manipulation", "bad friend"],
+    "use_case": "To describe a person who is selfish, unreliable, or acts in a generally disrespectful manner."
+  },
+  {
+    "id": "stew",
+    "name": "Baby, You've Got a Stew Going",
+    "sentiment": ["creativity", "resourcefulness", "accumulation", "potential"],
+    "use_case": "To acknowledge a situation where many disparate elements are coming together to create something potentially great, or chaotic."
+  },
+  {
+    "id": "stonks",
+    "name": "Stonks",
+    "sentiment": ["profit", "investment", "irony", "poor financial decisions"],
+    "use_case": "Used ironically to comment on questionable or ironically successful financial decisions or business ventures."
+  },
+  {
+    "id": "stop-it",
+    "name": "Stop It, Get Some Help",
+    "sentiment": ["disapproval", "concern", "intervention", "exasperation"],
+    "use_case": "To express strong disapproval of someone's actions and suggest they need to re-evaluate their behavior."
+  },
+  {
+    "id": "success",
+    "name": "Success Kid",
+    "sentiment": ["triumph", "accomplishment", "joy", "small victories"],
+    "use_case": "To celebrate small victories or moments of unexpected success."
+  },
+  {
+    "id": "tenguy",
+    "name": "10 Guy",
+    "sentiment": ["confusion", "stupidity", "being high", "nonsensical"],
+    "use_case": "To depict a confused or nonsensical thought process, often implying someone is under the influence or extremely tired."
+  },
+  {
+    "id": "toohigh",
+    "name": "The Rent Is Too Damn High",
+    "sentiment": ["frustration", "outrage", "exaggeration", "protest"],
+    "use_case": "To complain vehemently about excessively high costs or prices of anything, not just rent."
+  },
+  {
+    "id": "touch",
+    "name": "Principal Skinner",
+    "sentiment": ["realization", "awkwardness", "denial", "caught red-handed"],
+    "use_case": "To represent a moment of awkward realization, especially when someone is trying to deny or cover up something."
+  },
+  {
+    "id": "tried",
+    "name": "At Least You Tried",
+    "sentiment": ["consolation", "patronizing", "failure", "effort"],
+    "use_case": "To offer sarcastic or genuine consolation for a failed attempt, often implying that the effort was commendable even if the outcome wasn't."
+  },
+  {
+    "id": "trump",
+    "name": "Donald Trump",
+    "sentiment": ["politics", "opinion", "controversy", "reactionary"],
+    "use_case": "Used in various political contexts, often to express opinions or reactions related to Donald Trump's statements or actions."
+  },
+  {
+    "id": "ugandanknuck",
+    "name": "Ugandan Knuckles",
+    "sentiment": ["ignorance", "annoyance", "collective identity", "spam"],
+    "use_case": "Historically associated with VR Chat, often used to depict a mob mentality, asking 'Do you know da wae?' or implying a lack of knowledge."
+  },
+  {
+    "id": "waygd",
+    "name": "What Are Ya Gonna Do?",
+    "sentiment": ["resignation", "helplessness", "acceptance", "rhetorical question"],
+    "use_case": "To express a feeling of helplessness or resignation in the face of an uncontrollable situation."
+  },
+  {
+    "id": "wddth",
+    "name": "We Don't Do That Here",
+    "sentiment": ["disapproval", "rule-setting", "tradition", "rejection"],
+    "use_case": "To sternly inform someone that their behavior or proposed action is not acceptable in a particular environment or group."
+  },
+  {
+    "id": "whatyear",
+    "name": "What Year Is It?",
+    "sentiment": ["confusion", "disorientation", "nostalgia", "outdated"],
+    "use_case": "To express confusion or surprise at something that seems incredibly outdated or from a bygone era."
+  },
+  {
+    "id": "winter",
+    "name": "Winter is coming",
+    "sentiment": ["foreboding", "warning", "impending doom", "preparation"],
+    "use_case": "To warn of impending difficulties, challenges, or a significant change that requires preparation."
+  },
+  {
+    "id": "woman-cat",
+    "name": "Woman Yelling at a Cat",
+    "sentiment": ["confrontation", "disagreement", "misunderstanding", "accusation"],
+    "use_case": "To depict two contrasting perspectives or a heated argument where one party is overly dramatic and the other is unimpressed."
+  },
+  {
+    "id": "wonka",
+    "name": "Condescending Wonka",
+    "sentiment": ["condescension", "sarcasm", "disbelief", "patronizing"],
+    "use_case": "To deliver a condescending or sarcastic remark, often in response to an obvious or naive statement."
+  },
+  {
+    "id": "worst",
+    "name": "The Worst Day Of Your Life So Far",
+    "sentiment": ["exaggerated misery", "bad luck", "irony", "self-pity"],
+    "use_case": "To comically lament a particularly bad day or series of unfortunate events, often implying worse is yet to come."
+  },
+  {
+    "id": "xy",
+    "name": "X all the Y",
+    "sentiment": ["enthusiasm", "abundance", "desire", "saturation"],
+    "use_case": "To express an overwhelming desire to do or have 'X' in all possible 'Y' contexts, implying extreme saturation."
+  },
+  {
+    "id": "yallgot",
+    "name": "Y'all Got Any More of Them",
+    "sentiment": ["craving", "desire", "addiction", "scarcity"],
+    "use_case": "To express a strong craving or desire for more of something, often implying a shortage or addiction."
+  },
+  {
+    "id": "yodawg",
+    "name": "Xzibit Yo Dawg",
+    "sentiment": ["recursion", "excess", "exaggeration", "irony"],
+    "use_case": "To humorously illustrate recursion or extreme excess, where something is put inside itself."
+  },
+  {
+    "id": "yuno",
+    "name": "Y U NO Guy",
+    "sentiment": ["frustration", "demand", "exasperation", "rhetorical question"],
+    "use_case": "To express frustration or demand why something isn't happening or why someone isn't doing something obvious."
+  }
+]
