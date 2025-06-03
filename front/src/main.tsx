@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
 
 import { createDsfrCustomBrandingProvider, createMuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui";
-import { Container, createTheme, GlobalStyles } from '@mui/material';
+import { createTheme, GlobalStyles } from '@mui/material';
 import { startReactDsfr } from "@codegouvfr/react-dsfr/spa";
 startReactDsfr({ defaultColorScheme: "light", Link });
 

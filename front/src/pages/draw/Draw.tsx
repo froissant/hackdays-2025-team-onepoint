@@ -22,7 +22,7 @@ export const Draw = () => {
 	const roomName = location.state?.roomName;
 
 	// This could be useState, useOptimistic, or other state
-	let pending = false;
+	const pending = false;
 
 	useEffect(() => {
 		if (!pending) return;
