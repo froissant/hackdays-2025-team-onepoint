@@ -15,7 +15,9 @@ import { components, customAssetUrls, customTools, uiOverrides } from '../../dra
 import { useLocation } from 'react-router'
 import { useEffect } from 'react'
 
-const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/sync`
+import { BACKEND_URL } from '../../utils/env'
+
+const WORKER_URL = `${BACKEND_URL}/sync`
 
 export const Draw = () => {
 	const location = useLocation();
@@ -53,7 +55,7 @@ export const Draw = () => {
 			const filename = `${roomName}`;
 
 			// Compose the upload URL (adjust WORKER_URL or backend URL accordingly)
-			const url = `${import.meta.env.VITE_BACKEND_URL}/api/upload-preview/${encodeURIComponent(filename)}`;
+			const url = `${BACKEND_URL}/api/upload-preview/${encodeURIComponent(filename)}`;
 
 			// Upload via PUT, sending raw blob as body
 			const response = await fetch(url, {

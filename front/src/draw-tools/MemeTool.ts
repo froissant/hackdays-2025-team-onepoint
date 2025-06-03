@@ -1,7 +1,8 @@
 import { AssetRecordType, StateNode, type TLImageAsset } from "tldraw";
 
+import { BACKEND_URL } from "../utils/env";
 
-const WORKER_URL = `${import.meta.env.VITE_BACKEND_URL}/memes/generateFromPrompt`;
+const WORKER_URL = `${BACKEND_URL}/memes/generateFromPrompt`;
 
 
 const getImageMeta = (url: string): Promise<HTMLImageElement> =>

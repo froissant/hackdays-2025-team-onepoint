@@ -4,6 +4,7 @@ import { IdeaCard } from "./IdeaCard";
 
 import type { Project } from "../../assets/projects";
 import { useEffect, useState } from "react";
+import { BACKEND_URL } from "../../utils/env";
 
 // Define the props interface
 interface ProjectsListProps {
@@ -15,7 +16,7 @@ export const ProjectsList = ({ selectedFilter }: ProjectsListProps) => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/projects`, {
+            const response = await fetch(`${BACKEND_URL}/sync/projects`, {
                 method: 'GET',
             });
 

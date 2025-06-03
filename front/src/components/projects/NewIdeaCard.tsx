@@ -6,6 +6,8 @@ import { CreateProjectDialog } from "./CreateProjectDialog";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+import { BACKEND_URL } from "../../utils/env";
+
 export const NewIdeaCard = () => {
 
     const [openDialog, setOpenDialog] = useState(false);
@@ -16,7 +18,7 @@ export const NewIdeaCard = () => {
             return;
         }
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/sync/projects`, {
+            const response = await fetch(`${BACKEND_URL}/sync/projects`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

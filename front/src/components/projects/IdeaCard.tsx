@@ -6,6 +6,8 @@ import { formatDistanceToNowStrict } from "date-fns";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Link } from "react-router";
 
+import { BACKEND_URL } from "../../utils/env";
+
 type Project = {
     roomId: string;
     id: number;
@@ -24,7 +26,7 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
     }
 
     return (
-        
+
         <Card component={Link}
             to="/draw"
             state={{ roomName: project.roomId }}
@@ -33,11 +35,11 @@ export const IdeaCard = ({ project }: IdeaCardProps) => {
                 textDecoration: 'none', // Prevent underline
                 color: 'inherit'         // Keep text color
             }}>
-                          
+
             <CardMedia
                 component="img"
                 height="150"
-                image={import.meta.env.VITE_BACKEND_URL + `/cdn/previews/${project.roomId}.png`}
+                image={BACKEND_URL + `/cdn/previews/${project.roomId}.png`}
                 alt="Idea"
             />
             <CardActions disableSpacing sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
