@@ -25,7 +25,7 @@ export class ProjectStorageService implements IProjectStorageService {
                 if (extname(file) !== '.json') {
                     continue; // Skip non-JSON files
                 }
-                const projectId = parseInt(file.replace(/\.json$/, ''));
+                const projectId = parseInt(file.replace(/project-(\d+)\.json$/g, '$1'));
                 const project = await this.load(projectId);
                 if (project) {
                     projects.push(project);
@@ -39,7 +39,7 @@ export class ProjectStorageService implements IProjectStorageService {
     }
     async save(project: Project): Promise<void> {
         try {
-            const filePath = join(this.rootDir, `${project.id}.json`);
+            const filePath = join(this.rootDir, `project-${project.id}.json`);
             await writeFile(filePath, JSON.stringify(project));
         } catch (e) {
             this.logger.error('Error saving project:', e);
