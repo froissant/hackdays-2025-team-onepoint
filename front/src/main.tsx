@@ -25,6 +25,7 @@ const { DsfrCustomBrandingProvider } = createDsfrCustomBrandingProvider({
       palette: {
         primary: {
           main: '#000091', // Content-Brand-1-Accent
+          dark: '#1212ff', // Content-Brand-1-Accent-Dark
         },
         secondary: {
           main: '#000000', // Content-Brand-1
@@ -65,6 +66,9 @@ createRoot(document.getElementById('root')!).render(
               },
               ".lasuite-gaufre-btn": {
                 boxShadow: "0px 0px 0px 0px inset !important"
+              },
+              ".tl-background": {
+                backgroundColor: "#F0f0f0 !important"
               },
             }}
           />

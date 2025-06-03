@@ -1,4 +1,4 @@
-import { Box, Button, Card, Icon, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 import CardContent from '@mui/material/CardContent';
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -90,11 +90,15 @@ export const NewIdeaCard = () => {
                             gap: 1,
                         }}
                     >
-                        <Icon>
-                            <AddBoxIcon />
-                        </Icon>
+                        <AddBoxIcon fontSize="large" />
 
-                        <Typography variant="body1" sx={{ color: 'white', textTransform: 'none' }}>
+                        <Typography variant="body1"
+                            sx={{
+                                color: 'white',
+                                textTransform: 'none',
+                                fontSize: "14px",
+                                lineHeight: "18px",
+                            }}>
                             New Ideas Board
                         </Typography>
                     </Box>
