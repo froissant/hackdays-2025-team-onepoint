@@ -3,6 +3,10 @@ import MemeGenerationService from "../services/MemeGenerationService";
 import { IMemeGenerationService } from "../services/IMemeGenerationService";
 import { IAIService } from "../services/IAIService";
 import AlbertHandlerService from "../services/AlbertHandlerService";
+import { IRoomStorageService } from "../services/IRoomStorageService";
+import { RoomStorageService } from "../services/RoomStorageService";
+import { randomUUID } from "crypto";
+import { Readable } from "stream";
 
 const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
     const schemaCommon = {
@@ -11,6 +15,7 @@ const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
 
     const iaService : IAIService = new AlbertHandlerService();
     const memeService: IMemeGenerationService = new MemeGenerationService(iaService);
+    const roomStorageService: IRoomStorageService = new RoomStorageService(fastify.log);
 
 
     // TODO: JWT Authentication.
@@ -23,9 +28,17 @@ const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
         }
 
         try {
-            const url = await memeService.generateMemeFromPrompt(promptText);
-            return reply.send({ url });
+            const url = await memeService.generateMemeFromPrompt(promptText) as string;
+
+            const response = await fetch(url, { method: "GET" });
+
+            var id = randomUUID();
+            //Incompatibility of ReadStreams... To fix later
+            roomStorageService.saveAsset(id, await response.bytes());
+
+            return reply.send({ id });
         } catch (error : any) {
+            console.log(error);
             request.log.error(error);
             return reply.code(500).send({ error: "Failed to generate meme", detail: error.message });
         }

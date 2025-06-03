@@ -3792,3 +3792,30 @@ it from receiving any pointer events or affecting the cursor. */
 /* .tl-watermark_SEE-LICENSE {
 	display: none !important;
 } */
+
+#«r4c»_main > * {
+	background-color: pink;
+}
+
+/* Remove visibility rule for toolbar icon */
+.tlui-toolbar__tools__list > *:nth-child(n + 10) {
+	display: inherit !important;
+}
+.tlui-toolbar-container.tlui-buttons__grid > *:nth-child(-n + 8) {
+	display: inherit !important;
+}
+.tlui-toolbar-container.tlui-buttons__grid > *:nth-child(-n + 12) {
+	margin-top: 0 !important; 
+}
+
+
+/* Replace visibility rule for toolbar icon with a new one */
+.tlui-toolbar__tools__list > *:nth-child(n + 17):not([aria-pressed="true"]) {
+	display: none !important;
+}
+.tlui-toolbar-container.tlui-buttons__grid > *:nth-child(-n + 15) {
+	display: none !important;
+}
+.tlui-toolbar-container.tlui-buttons__grid > *:nth-child(-n + 19) {
+	margin-top: 0 !important; 
+}

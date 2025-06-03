@@ -10,7 +10,7 @@ import { RoomSnapshot } from "@tldraw/sync-core";
 import { IRoomStorageService } from "./IRoomStorageService";
 import { mkdir, readdir, readFile, writeFile } from 'fs/promises'
 import { extname, join } from 'path'
-import { Readable } from 'stream'
+import Stream, { Readable } from 'stream'
 import { FastifyBaseLogger } from "fastify";
 
 
@@ -99,7 +99,7 @@ export class RoomStorageService implements IRoomStorageService {
      * @param stream The Readable stream containing the asset data.
      * @returns A promise that resolves when the operation is complete.
      */
-    async saveAsset(id: string, stream: Readable) {
+    async saveAsset(id: string, stream: string | NodeJS.ArrayBufferView | Iterable<string | NodeJS.ArrayBufferView> | AsyncIterable<string | NodeJS.ArrayBufferView> | Stream) {
         await mkdir(this.rootAssetDir, { recursive: true })
         await writeFile(join(this.rootAssetDir, id), stream)
     }

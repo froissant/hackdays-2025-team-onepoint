@@ -6,8 +6,8 @@ export function MemeToolDialog({ onClose, open }: { onClose(result?: string): vo
 
 	return (
 		<>
-			<Dialog onClose={() => onClose()} open={open}>
-				<DialogTitle>Set backup account</DialogTitle>
+			<Dialog fullWidth={true} onClose={() => onClose()} open={open}>
+				<DialogTitle>Enter a prompt</DialogTitle>
 				<DialogContent>
 					<TextField
 						autoFocus

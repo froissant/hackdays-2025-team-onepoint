@@ -49,7 +49,7 @@ export const uiOverrides: TLUiOverrides = {
 		// Create a tool item in the ui's context.
 		tools.meme = {
 			id: 'meme-tool',
-			icon: 'color',
+			icon: 'meme-icon',
 			label: 'Meme',
 			kbd: 'm',
 			onSelect: () => { },
@@ -81,13 +81,20 @@ export const components: TLComponents = {
 			<DefaultToolbar {...props}>
 				<SelectToolbarItem />
 				<HandToolbarItem />
-				<div style={{ width: "1px", height: "24px", backgroundColor: "#D9D9D9" }}></div>
+				<LaserToolbarItem />
+				<div style={{ width: "1px", height: "40px", backgroundColor: "#D9D9D9" }}></div>
+				<FrameToolbarItem />
+				<div style={{ width: "1px", height: "40px", backgroundColor: "#D9D9D9" }}></div>
 				<DrawToolbarItem />
-				<EraserToolbarItem />
+				<HighlightToolbarItem />
 				<ArrowToolbarItem />
 				<TextToolbarItem />
+				<EraserToolbarItem />
+				<div style={{ width: "1px", height: "40px", backgroundColor: "#D9D9D9" }}></div>
 				<NoteToolbarItem />
 				<AssetToolbarItem />
+				<TldrawUiMenuItem {...tools['meme']} isSelected={isMemeSelected} onSelect={handleMemeDialog} />
+				<div style={{ width: "1px", height: "40px", backgroundColor: "#D9D9D9" }}></div>
 
 				<RectangleToolbarItem />
 				<EllipseToolbarItem />
@@ -109,10 +116,6 @@ export const components: TLComponents = {
 				<ArrowRightToolbarItem />
 
 				<LineToolbarItem />
-				<HighlightToolbarItem />
-				<LaserToolbarItem />
-				<FrameToolbarItem />
-				<TldrawUiMenuItem {...tools['meme']} isSelected={isMemeSelected} onSelect={handleMemeDialog} />
 				<MemeToolDialog open={dialogOpen} onClose={handleMemeMessage} />
 			</DefaultToolbar>
 		)
@@ -130,7 +133,7 @@ export const components: TLComponents = {
 
 export const customAssetUrls: TLUiAssetUrlOverrides = {
 	icons: {
-		'tool-meme': '/tool-meme.svg',
+		'meme-icon': '/public/meme-icon.svg',
 	},
 }
 
