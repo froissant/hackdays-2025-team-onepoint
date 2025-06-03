@@ -87,7 +87,7 @@ export const NewIdeaCard = () => {
                             <AddBoxIcon />
                         </Icon>
 
-                        <Typography variant="body1" sx={{ color: 'white' }}>
+                        <Typography variant="body1" sx={{ color: 'white', textTransform: 'none' }}>
                             New Ideas Board
                         </Typography>
                     </Box>
