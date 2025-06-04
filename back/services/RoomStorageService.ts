@@ -1,6 +1,6 @@
 /**
  * RoomStorageService
- * 
+ *
  * Implementation of the IRoomStorageService interface.
  * This service provides methods to persist and retrieve room snapshots to and from the filesystem.
  * Room data is stored as JSON files in a directory specified by the ROOM_DIR environment variable.
@@ -8,9 +8,9 @@
 
 import { RoomSnapshot } from "@tldraw/sync-core";
 import { IRoomStorageService } from "./IRoomStorageService";
-import { mkdir, readdir, readFile, writeFile } from 'fs/promises'
-import { extname, join } from 'path'
-import Stream, { Readable } from 'stream'
+import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
+import { extname, join } from 'path';
+import Stream from 'stream';
 import { FastifyBaseLogger } from "fastify";
 
 
@@ -29,7 +29,7 @@ export class RoomStorageService implements IRoomStorageService {
      * Initializes the RoomStorageService.
      * The root directory is set from the ROOM_DIR environment variable.
      */
-    constructor(logger : FastifyBaseLogger) {
+    constructor(logger: FastifyBaseLogger) {
         this.rootDir = process.env.ROOM_DIR;
         this.logger = logger;
         this.rootAssetDir = process.env.ASSET_DIR;
@@ -73,10 +73,11 @@ export class RoomStorageService implements IRoomStorageService {
      */
     async load(roomId: string): Promise<RoomSnapshot | undefined> {
         try {
-            const data = await readFile(join(this.rootDir, `${roomId}.json`))
-            return JSON.parse(data.toString()) as RoomSnapshot ?? undefined
+            const data = await readFile(join(this.rootDir, `${roomId}.json`));
+            return JSON.parse(data.toString()) as RoomSnapshot ?? undefined;
         } catch (e) {
-            return undefined
+            this.logger.error(e);
+            return undefined;
         }
     }
 
@@ -88,8 +89,8 @@ export class RoomStorageService implements IRoomStorageService {
      * @returns A promise that resolves when the operation is complete.
      */
     async save(roomId: string, snapshot: RoomSnapshot): Promise<void> {
-        await mkdir(this.rootDir, { recursive: true })
-        await writeFile(join(this.rootDir, `${roomId}.json`), JSON.stringify(snapshot))
+        await mkdir(this.rootDir, { recursive: true });
+        await writeFile(join(this.rootDir, `${roomId}.json`), JSON.stringify(snapshot));
     }
 
     /**
@@ -100,16 +101,16 @@ export class RoomStorageService implements IRoomStorageService {
      * @returns A promise that resolves when the operation is complete.
      */
     async saveAsset(id: string, stream: string | NodeJS.ArrayBufferView | Iterable<string | NodeJS.ArrayBufferView> | AsyncIterable<string | NodeJS.ArrayBufferView> | Stream) {
-        await mkdir(this.rootAssetDir, { recursive: true })
-        await writeFile(join(this.rootAssetDir, id), stream)
+        await mkdir(this.rootAssetDir, { recursive: true });
+        await writeFile(join(this.rootAssetDir, id), stream);
     }
 
     /**
      * Loads an asset from the filesystem.
      * @param id The unique identifier of the asset to load.
-     * @returns 
+     * @returns
      */
     async loadAsset(id: string): Promise<Buffer> {
-        return await readFile(join(this.rootAssetDir, id))
+        return await readFile(join(this.rootAssetDir, id));
     }
 };

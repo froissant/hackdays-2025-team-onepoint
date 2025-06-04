@@ -6,14 +6,13 @@ import AlbertHandlerService from "../services/AlbertHandlerService";
 import { IRoomStorageService } from "../services/IRoomStorageService";
 import { RoomStorageService } from "../services/RoomStorageService";
 import { randomUUID } from "crypto";
-import { Readable } from "stream";
 
 const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
     const schemaCommon = {
         tags: ["Meme Generation"],
     };
 
-    const iaService : IAIService = new AlbertHandlerService();
+    const iaService: IAIService = new AlbertHandlerService();
     const memeService: IMemeGenerationService = new MemeGenerationService(iaService);
     const roomStorageService: IRoomStorageService = new RoomStorageService(fastify.log);
 
@@ -27,21 +26,15 @@ const MemeGenerationController: FastifyPluginCallback = (fastify, _, done) => {
             return reply.code(400).send({ error: "Request body must be a non-empty string" });
         }
 
-        try {
-            const url = await memeService.generateMemeFromPrompt(promptText) as string;
+        const url = await memeService.generateMemeFromPrompt(promptText) as string;
 
-            const response = await fetch(url, { method: "GET" });
+        const response = await fetch(url, { method: "GET" });
 
-            var id = randomUUID();
-            //Incompatibility of ReadStreams... To fix later
-            roomStorageService.saveAsset(id, await response.bytes());
+        const id = randomUUID();
+        //Incompatibility of ReadStreams... To fix later
+        roomStorageService.saveAsset(id, await response.bytes());
 
-            return reply.send({ id });
-        } catch (error : any) {
-            console.log(error);
-            request.log.error(error);
-            return reply.code(500).send({ error: "Failed to generate meme", detail: error.message });
-        }
+        return reply.send({ id });
     });
 
     fastify.get("/templates/:id", {

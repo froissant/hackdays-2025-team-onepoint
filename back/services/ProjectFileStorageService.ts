@@ -4,24 +4,24 @@ import { extname, join } from "path";
 import { readdir, readFile, unlink, writeFile, mkdir } from "fs/promises";
 import { Project } from "../models/Project";
 
-export class ProjectStorageService implements IProjectStorageService {
+export class ProjectFileStorageService implements IProjectStorageService {
     private rootDir: string;
     private logger: FastifyBaseLogger;
-    
+
     constructor(fastifyLogger: FastifyBaseLogger) {
         this.rootDir = process.env.PROJECT_DIR;
         this.logger = fastifyLogger;
     }
 
     async init(): Promise<void> {
-        await mkdir(this.rootDir, { recursive: true })
+        await mkdir(this.rootDir, { recursive: true });
     }
 
     async listProjects(): Promise<Project[]> {
         try {
             const files = await readdir(this.rootDir);
             const projects: Project[] = [];
-            for(const file of files) {
+            for (const file of files) {
                 if (extname(file) !== '.json') {
                     continue; // Skip non-JSON files
                 }

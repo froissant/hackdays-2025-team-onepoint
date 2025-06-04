@@ -1,8 +1,7 @@
-import { TLSocketRoom } from '@tldraw/sync-core'
+import { TLSocketRoom } from '@tldraw/sync-core';
 import { FastifyBaseLogger } from 'fastify';
 import { RoomState } from '../models/RoomState';
 import { IRoomStorageService } from './IRoomStorageService';
-import { mkdir } from 'fs';
 
 // This service is responsible for creating, loading, and deleting rooms
 // It also handles persistence of room data
@@ -30,7 +29,7 @@ export class RoomService {
         this.rooms = new Map<string, RoomState>();
         // Do persistence on a regular interval.
         // In production you probably want a smarter system with throttling.
-        setInterval(this.onTimerTick.bind(this), 2000)
+        setInterval(this.onTimerTick.bind(this), 2000);
     }
 
     async init() {
@@ -51,9 +50,9 @@ export class RoomService {
     onTimerTick() {
         for (const [roomId, roomState] of this.rooms.entries()) {
             if (roomState.needsPersist) {
-                roomState.needsPersist = false
-                this.logger.info(`Saving snapshot for room with 'id': ${roomId}`)
-                this.storageService.save(roomId, roomState.room.getCurrentSnapshot())
+                roomState.needsPersist = false;
+                this.logger.info(`Saving snapshot for room with 'id': ${roomId}`);
+                this.storageService.save(roomId, roomState.room.getCurrentSnapshot());
             }
 
             if (roomState.room.isClosed()) {
@@ -63,30 +62,34 @@ export class RoomService {
     }
 
     async createRoom(roomId: string): Promise<TLSocketRoom> {
-        const self = this;
-        self.logger.info(`Creating room with 'id': ${roomId}`)
+        this.logger.info(`Creating room with 'id': ${roomId}`);
 
-        const initialSnapshot = await this.storageService.load(roomId)
+        const sessionRemoved = (room: TLSocketRoom, args: {
+            numSessionsRemaining: number;
+            sessionId: string;
+        }) => {
+            this.logger.info(`Client disconnected from room with 'id': ${roomId}`, args.sessionId);
+            if (args.numSessionsRemaining === 0) {
+                this.logger.info(`Closing room with 'id': ${roomId}`);
+                room.close();
+            }
+        };
+
+        const initialSnapshot = await this.storageService.load(roomId);
         const roomState: RoomState = {
             needsPersist: false,
             id: roomId,
             room: new TLSocketRoom({
                 initialSnapshot,
-                onSessionRemoved(room, args) {
-                    self.logger.info(`Client disconnected from room with 'id': ${roomId}`, args.sessionId)
-                    if (args.numSessionsRemaining === 0) {
-                        self.logger.info(`Closing room with 'id': ${roomId}`)
-                        room.close()
-                    }
-                },
+                "onSessionRemoved": sessionRemoved.bind(this),
                 onDataChange() {
-                    roomState.needsPersist = true
+                    roomState.needsPersist = true;
                 },
             }),
-        }
+        };
 
-        this.rooms.set(roomId, roomState)
-        return roomState.room
+        this.rooms.set(roomId, roomState);
+        return roomState.room;
     }
 
     loadRoom(roomId: string): TLSocketRoom | null {
@@ -98,27 +101,27 @@ export class RoomService {
     }
 
     deleteRoom(id: string) {
-        this.logger.info(`Deleting room with 'id': ${id}`)
+        this.logger.info(`Deleting room with 'id': ${id}`);
         this.rooms.delete(id);
     }
 
     async makeOrLoadRoom(roomId: string): Promise<TLSocketRoom> {
         this.mutex = this.mutex
             .then(async () => {
-                const existingRoom = this.loadRoom(roomId)
+                const existingRoom = this.loadRoom(roomId);
                 if (existingRoom) {
-                    return null // already loaded
+                    return null; // already loaded
                 }
-                await this.createRoom(roomId)
-                return null
+                await this.createRoom(roomId);
+                return null;
             })
             .catch((error) => {
                 // return errors as normal values to avoid stopping the mutex chain
-                return error
-            })
+                return error;
+            });
 
-        const err = await this.mutex
-        if (err) throw err
-        return this.rooms.get(roomId)!.room
+        const err = await this.mutex;
+        if (err) throw err;
+        return this.rooms.get(roomId)!.room;
     }
 }

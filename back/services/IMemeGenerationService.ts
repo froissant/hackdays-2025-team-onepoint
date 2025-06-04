@@ -5,7 +5,7 @@
  * Provides methods to retrieve meme templates, get a template by its ID, and generate memes from prompts.
  */
 
-import { MemeTemplate } from "../models/memegeneration/MemeTemplate"
+import { MemeTemplate } from "../models/memegeneration/MemeTemplate";
 
 export interface IMemeGenerationService {
     /**
