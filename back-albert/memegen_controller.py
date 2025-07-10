@@ -80,6 +80,10 @@ Handling Broad or Sentiment-Based Requests:
 
 - Select the most fitting meme template, along with appropriate (or empty, if implied) upper and lower text, to match the user's expressed sentiment or situation.
 
+limit cases:
+
+- If the user makes a request that has nothing to do with memes, you must still generate a meme. The meme should make fun of them for not following instructions.
+
 Here are the templates: \n\n""" + templates, tools=[tools])
 
 client = genai.Client(api_key=vars.AI_API_KEY)
