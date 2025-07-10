@@ -1,4 +1,5 @@
-from openai import OpenAI
+from google import genai
+from google.genai import types
 import json
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
@@ -31,61 +32,74 @@ with open('templates_clean.json', 'r', encoding='utf-8') as infile:
     raw_templates = json.load(infile)
     templates = str(raw_templates)
     
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "getMeme",
-            "description": "generate a meme in png form",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "meme_template_id": {
-                        "type": "string",
-                        "description": "Id of the meme template"
-                    },
-                    "upper_text":{
-                        "type": "string",
-                        "description": "Text shown at the top of the meme"
-                    },
-                    "lower_text":{
-                        "type": "string",
-                        "description": "Text shown at the bottom of the meme"
-                    }
-
+meme_generator_function = {
+        "name": "getMeme",
+        "description": "generate a meme in PNG form",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "meme_template_id": {
+                    "type": "string",
+                    "description": "Id of the meme template"
                 },
-                "required": ["meme_template_id", "upper_text", "lower_text"]
-            }
-        }
-    }
-]
+                "upper_text":{
+                    "type": "string",
+                    "description": "Text shown at the top of the meme"
+                },
+                "lower_text":{
+                    "type": "string",
+                    "description": "Text shown at the bottom of the meme"
+                }
 
-client = OpenAI(
-    base_url = 'https://albert.api.etalab.gouv.fr/v1',
-    api_key=vars.ALBERT_API_KEY,
-)
+            },
+            "required": ["meme_template_id", "upper_text", "lower_text"]
+        }
+}
+
+
+tools = types.Tool(function_declarations=[meme_generator_function])
+
+config=types.GenerateContentConfig(
+        system_instruction="""You are memeGenAI. Your core function is to generate memes by extracting specific details from user prompts.
+
+Meme Generation Requirements:
+
+For every user request, you must identify and extract the following:
+
+- Meme Template ID: This ID must correspond exactly to one of the id values found in the JSON array of meme templates provided after these instructions. You are responsible for accurately determining the template the user intends, even if they describe it indirectly. For example, if a user says, "I want a meme of the crazy alien dude," you must recognize this refers to the "ancient aliens guy" and return aag as the template ID.
+
+- Upper Text: The text designated for the top portion of the meme. This can be empty if the user explicitly requests it.
+
+- Lower Text: The text designated for the bottom portion of the meme. This can also be empty if the user explicitly requests it.
+
+Handling Broad or Sentiment-Based Requests:
+
+- If a user's prompt describes a general sentiment or situation rather than a specific meme template or text, you should:
+
+- Consult the sentiments and useCase fields within the meme template JSON.
+
+- Select the most fitting meme template, along with appropriate (or empty, if implied) upper and lower text, to match the user's expressed sentiment or situation.
+
+Here are the templates: \n\n""" + templates, tools=[tools])
+
+client = genai.Client(api_key=vars.ALBERT_API_KEY)
 
 def getParamsFromPrompt(prompt: str):
-    response = client.chat.completions.create(
-        model="albert-small",
-        messages=[
-            {"role": "system", "content": "You are memeGenAi, you will be prompted to generate memes and you are required to extract the id of the meme template, the upper text and the lower text."
-            "the id of the template **MUST** absolutely exist in the json array below. It is your task to know which template the user is refering to, by comparing the description to the names and ids, and return the corresponding id."
-            "For example, if the user says 'I want a meme of the crazy alien dude' it is your task to know they're refering to the ancient aliens guy, so you return 'aag' as the id of the meme template."
-            "If the user does not refer to a specific template or upper text or lower text but rather describes a sentiment or situation, you can refer to the fields 'sentiments' and 'useCase' to make a convenient choice and generate a png with a convenient id, upper and lower text."
-            "The upper and lower text can be empty if requested by the user."
-            "Here is the JSON of all the meme templatess:\n\n" + templates},
-            {"role": "user", "content": prompt}
-        ],
-        tools=tools,
-        tool_choice="auto"
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        config=config,
+        contents=prompt
     )
-    tool_calls = response.choices[0].message.tool_calls
-    if tool_calls:
-        for call in tool_calls:
-            if call.function.name == "getMeme":
-                args = json.loads(call.function.arguments)
-                # if not [elem["id"] for elem in raw_templates].__contains__(args["meme_template_id"]):
-                #     return ResponseData(id="", lines=[])
-                return ResponseData(id=args["meme_template_id"], lines=[args["upper_text"], args["lower_text"]])
-        return ResponseData(id="", lines=[])
+
+    if response.candidates[0].content.parts[0].function_call:
+        function_call = response.candidates[0].content.parts[0].function_call
+        if function_call.name == "getMeme":
+            print(f"Function to call: {function_call.name}")
+            print(f"Arguments: {function_call.args}")
+            args = function_call.args
+            return ResponseData(id=args["meme_template_id"], lines=[args["upper_text"], args["lower_text"]])
+        else:
+            print("Somehow it is not the meme function that was called.")
+    else:
+        print("No function call found in the response.")
+        print(response.text)
