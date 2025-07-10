@@ -82,7 +82,7 @@ Handling Broad or Sentiment-Based Requests:
 
 Here are the templates: \n\n""" + templates, tools=[tools])
 
-client = genai.Client(api_key=vars.ALBERT_API_KEY)
+client = genai.Client(api_key=vars.AI_API_KEY)
 
 def getParamsFromPrompt(prompt: str):
     response = client.models.generate_content(
